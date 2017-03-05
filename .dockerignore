@@ -1,4 +1,5 @@
 .dockerignore
 Dockerfile
 README.md
+nginx.conf
 
