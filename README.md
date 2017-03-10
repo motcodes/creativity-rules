@@ -1,32 +1,32 @@
+![example](./example.png)
+
 # Dokku static site
 
 This is a reusable Docker image that allows to deploy static sites to Dokku with Dockerfile (and without using buildbacks).
 
-Originally based on <https://github.com/glogiotatidis/dokku-static-site>
+Originally based on <https://github.com/IlyaSemenov/dokku-static-site>
 
 ## HOW TO
 
-Create `Dockerfile` in the root of your static site with the following contents:
-
-```Dockerfile
-FROM ilyasemenov/dokku-static-site
 ```
+# clone
+git clone https://github.com/pahaz/dokku-static-site.git my-static-site
+cd my-static-site
 
-Push the project to Dokku as usual:
+# change git origin
+git remote set-url origin https://github.com/USERNAME/OTHERREPOSITORY.git
 
-```bash
-DOKKU_HOST=dokku.me dokku-client.sh apps:create mysite
+# deploy
+DOKKU_HOST=dokku.me dokku-client.sh apps:create my-static-site
 git push dokku master
 ```
 
-The site is now available at <http://mysite.dokku.me>
+The site is now available at <http://my-static-site.dokku.me>
 
 ### Ignoring certain files
 
-Create `.dockerignore` if you want to exclude certain files from getting exposed. For example, you may want this:
+Add line to `.dockerignore` if you want to exclude certain files from getting exposed.
 
-```
-Dockerfile
-.dockerignore
-README.md
-```
+### Credits 
+
+https://wrapbootstrap.com/theme/inspinia-responsive-admin-theme-WB0R5L90S -- $17 admin panel
