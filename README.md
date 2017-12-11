@@ -6,6 +6,8 @@ This is a reusable Docker image that allows to deploy static sites to Dokku with
 
 Originally based on [IlyaSemenov/dokku-static-site](https://github.com/IlyaSemenov/dokku-static-site) and [pahaz/dokku-static-site](https://github.com/pahaz/dokku-static-site)
 
+[Demo](https://sherman.sg/dokku-static-site/), hosted on GitHub Pages, since, you know, it is a static site after all.
+
 ## Instructions
 
 1. Clone this repo
