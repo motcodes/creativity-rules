@@ -11,7 +11,6 @@ Originally based on [IlyaSemenov/dokku-static-site](https://github.com/IlyaSemen
 1. Clone this repo
 
 ```
-# clone
 git clone https://github.com/shrmnk/dokku-static-site.git my-static-site
 cd my-static-site
 ```
@@ -44,7 +43,6 @@ dokku domains:add <app-name> <domain>
 6. (Optional) Change the origin
 
 ```
-# change git origin
 git remote set-url origin https://github.com/USERNAME/OTHERREPOSITORY.git
 ```
 
@@ -59,3 +57,4 @@ Add line to `.dockerignore` if you want to exclude certain files from getting ex
 - Removed css files and replaced with cdnjs resources where available
 - Removed full-blown bootstrap theme
 - Removed brand-specific text and example
+- Fixed 404 page not rendering
