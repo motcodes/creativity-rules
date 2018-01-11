@@ -8,6 +8,12 @@ Originally based on [IlyaSemenov/dokku-static-site](https://github.com/IlyaSemen
 
 [Demo](https://sherman.sg/dokku-static-site/), hosted on GitHub Pages, since, you know, it is a static site after all.
 
+## Now using [Heroku Static Buildpack](https://github.com/heroku/heroku-buildpack-static)
+
+This means that your static site files are now in the /docs folder (can be changed in `static.json`)
+
+There are several options that allow you to host, proxy, and customise all sorts of static sites. Refer to the repository for more configuration options.
+
 ## Instructions
 
 1. Clone this repo
@@ -60,3 +66,4 @@ Add line to `.dockerignore` if you want to exclude certain files from getting ex
 - Removed full-blown bootstrap theme
 - Removed brand-specific text and example
 - Fixed 404 page not rendering
+- Uses [Heroku Static Buildpack](https://github.com/heroku/heroku-buildpack-static)
