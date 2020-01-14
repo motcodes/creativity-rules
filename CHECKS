@@ -1,5 +1,5 @@
-WAIT=1     # Wait 1 second
-TIMEOUT=3  # Timeout after three seconds
-ATTEMPTS=10 # Attempt checks 10 times
+WAIT=1
+TIMEOUT=3
+ATTEMPTS=10
 
 /  coming soon
