@@ -2,9 +2,8 @@
 
 import { usePreview } from 'lib/sanity.preview'
 import { projectBySlugQuery } from 'lib/sanity.queries'
-import type { ProjectPayload } from 'types'
 
-import { ProjectPage } from './ProjectPage'
+import { ProjectPage, ProjectPayload } from './ProjectPage'
 
 export function ProjectPreview({
   token,
@@ -17,5 +16,5 @@ export function ProjectPreview({
     slug: slug,
   })
 
-  return <ProjectPage data={project} />
+  return <ProjectPage {...project} />
 }

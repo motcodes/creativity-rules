@@ -1,4 +1,4 @@
-import { DocumentIcon, ImageIcon } from '@sanity/icons'
+import { DocumentIcon } from '@sanity/icons'
 import { defineArrayMember, defineField, defineType } from 'sanity'
 
 export default defineType({
@@ -6,7 +6,6 @@ export default defineType({
   title: 'Project',
   type: 'document',
   icon: DocumentIcon,
-  // Uncomment below to have edits publish automatically as you type
   // liveEdit: true,
   fields: [
     defineField({
@@ -29,32 +28,8 @@ export default defineType({
     }),
     defineField({
       name: 'overview',
-      description:
-        'Used both for the <meta> description tag for SEO, and project subheader.',
-      title: 'Overview',
-      type: 'array',
-      of: [
-        // Paragraphs
-        defineArrayMember({
-          lists: [],
-          marks: {
-            annotations: [],
-            decorators: [
-              {
-                title: 'Italic',
-                value: 'em',
-              },
-              {
-                title: 'Strong',
-                value: 'strong',
-              },
-            ],
-          },
-          styles: [],
-          type: 'block',
-        }),
-      ],
-      validation: (rule) => rule.max(155).required(),
+      type: 'overview',
+      validation: (rule) => rule.required(),
     }),
     defineField({
       name: 'coverImage',
@@ -68,89 +43,31 @@ export default defineType({
       validation: (rule) => rule.required(),
     }),
     defineField({
-      name: 'duration',
-      title: 'Duration',
-      type: 'duration',
-    }),
-    defineField({
-      name: 'client',
-      title: 'Client',
-      type: 'string',
-    }),
-    defineField({
+      title: 'Link to Project',
       name: 'site',
-      title: 'Site',
       type: 'url',
     }),
     defineField({
-      name: 'tags',
-      title: 'Tags',
+      title: 'Social Links',
+      name: 'socialLinks',
       type: 'array',
-      of: [{ type: 'string' }],
-      options: {
-        layout: 'tags',
-      },
+      of: [
+        defineArrayMember({
+          title: 'Link',
+          name: 'link',
+          type: 'linkExternalWithLabel',
+        }),
+      ],
+    }),
+    defineField({
+      title: 'Team',
+      name: 'team',
+      type: 'team',
     }),
     defineField({
       name: 'description',
       title: 'Project Description',
-      type: 'array',
-      of: [
-        defineArrayMember({
-          type: 'block',
-          marks: {
-            annotations: [
-              {
-                name: 'link',
-                type: 'object',
-                title: 'Link',
-                fields: [
-                  {
-                    name: 'href',
-                    type: 'url',
-                    title: 'Url',
-                  },
-                ],
-              },
-            ],
-          },
-          styles: [],
-        }),
-        // Custom blocks
-        defineArrayMember({
-          name: 'timeline',
-          type: 'timeline',
-        }),
-        defineField({
-          type: 'image',
-          icon: ImageIcon,
-          name: 'image',
-          title: 'Image',
-          options: {
-            hotspot: true,
-          },
-          preview: {
-            select: {
-              imageUrl: 'asset.url',
-              title: 'caption',
-            },
-          },
-          fields: [
-            defineField({
-              title: 'Caption',
-              name: 'caption',
-              type: 'string',
-            }),
-            defineField({
-              name: 'alt',
-              type: 'string',
-              title: 'Alt text',
-              description:
-                'Alternative text for screenreaders. Falls back on caption if not set',
-            }),
-          ],
-        }),
-      ],
+      type: 'blockContent',
     }),
   ],
 })

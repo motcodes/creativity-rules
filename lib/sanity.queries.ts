@@ -34,15 +34,24 @@ export const pagesBySlugQuery = groq`
 export const projectBySlugQuery = groq`
   *[_type == "project" && slug.current == $slug][0] {
     _id,
-    client, 
     coverImage,
-    description,
-    duration, 
+    description[]{
+      ...,
+      markDefs[]{
+        ...,
+        'reference': select(_type == 'linkInternal' => reference->{_type, 'slug': coalesce(slug.current, '')})
+      },
+      _type =='audio' => {
+        'url': asset->url,
+        'mimeType': asset->mimeType,
+      },
+    },
     overview,
     site, 
     "slug": slug.current,
-    tags,
     title,
+    socialLinks,
+    team
   }
 `
 

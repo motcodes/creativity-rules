@@ -42,21 +42,6 @@ export interface PagePayload {
   title?: string
 }
 
-export interface ProjectPayload {
-  client?: string
-  coverImage?: Image
-  description?: Block[]
-  duration?: {
-    start?: string
-    end?: string
-  }
-  overview?: Block[]
-  site?: string
-  slug: string
-  tags?: string[]
-  title?: string
-}
-
 export interface SettingsPayload {
   footer?: Block[]
   menuItems?: MenuItem[]

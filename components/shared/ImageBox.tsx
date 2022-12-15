@@ -13,13 +13,19 @@ interface ImageBoxProps {
 export default function ImageBox({
   image,
   alt = 'Cover image',
-  width = 3500,
-  height = 2000,
+  width = 1920,
+  height = 1080,
   size = '100vw',
   classesWrapper,
 }: ImageBoxProps) {
   const imageUrl =
-    image && urlForImage(image)?.height(height).width(width).fit('crop').url()
+    image &&
+    urlForImage(image)
+      ?.height(height)
+      .width(width)
+      .fit('crop')
+      .auto('format')
+      .url()
 
   return (
     <div
