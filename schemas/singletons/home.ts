@@ -7,7 +7,7 @@ export default defineType({
   type: 'document',
   icon: HomeIcon,
   // Uncomment below to have edits publish automatically as you type
-  // liveEdit: true,
+  liveEdit: true,
   fields: [
     defineField({
       name: 'title',
@@ -18,45 +18,7 @@ export default defineType({
     }),
     defineField({
       name: 'overview',
-      description:
-        'Used both for the <meta> description tag for SEO, and the personal website subheader.',
-      title: 'Description',
-      type: 'array',
-      of: [
-        // Paragraphs
-        defineArrayMember({
-          lists: [],
-          marks: {
-            annotations: [
-              {
-                name: 'link',
-                type: 'object',
-                title: 'Link',
-                fields: [
-                  {
-                    name: 'href',
-                    type: 'url',
-                    title: 'Url',
-                  },
-                ],
-              },
-            ],
-            decorators: [
-              {
-                title: 'Italic',
-                value: 'em',
-              },
-              {
-                title: 'Strong',
-                value: 'strong',
-              },
-            ],
-          },
-          styles: [],
-          type: 'block',
-        }),
-      ],
-      validation: (rule) => rule.max(155).required(),
+      type: 'overview',
     }),
     defineField({
       name: 'showcaseProjects',

@@ -1,6 +1,5 @@
 import { ImageIcon, LaunchIcon, LinkIcon } from '@sanity/icons'
 import { defineArrayMember, defineField } from 'sanity'
-import React from 'react'
 
 export default defineField({
   title: 'Block Content',

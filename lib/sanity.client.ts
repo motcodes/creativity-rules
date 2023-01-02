@@ -2,6 +2,8 @@ import 'server-only'
 
 import { apiVersion, dataset, projectId, useCdn } from 'lib/sanity.api'
 import {
+  aboutPageQuery,
+  aboutPageTitleQuery,
   homePageQuery,
   homePageTitleQuery,
   pagesBySlugQuery,
@@ -9,7 +11,12 @@ import {
   settingsQuery,
 } from 'lib/sanity.queries'
 import { createClient } from 'next-sanity'
-import type { HomePagePayload, PagePayload, SettingsPayload } from 'types'
+import type {
+  AboutPagePayload,
+  HomePagePayload,
+  PagePayload,
+  SettingsPayload,
+} from 'types'
 import { ProjectPayload } from 'components/pages/project/ProjectPage'
 
 /**
@@ -26,7 +33,13 @@ export async function getHomePage({
 }: {
   token?: string
 }): Promise<HomePagePayload | undefined> {
-  return await sanityClient(token)?.fetch(homePageQuery)
+  return (
+    (await sanityClient(token)?.fetch(homePageQuery)) || {
+      title: '',
+      overview: [],
+      showcaseProjects: [],
+    }
+  )
 }
 
 export async function getHomePageTitle({
@@ -35,6 +48,28 @@ export async function getHomePageTitle({
   token?: string
 }): Promise<string | undefined> {
   return await sanityClient(token)?.fetch(homePageTitleQuery)
+}
+
+export async function getAboutPage({
+  token,
+}: {
+  token?: string
+}): Promise<AboutPagePayload | undefined> {
+  return (
+    (await sanityClient(token)?.fetch(aboutPageQuery)) || {
+      title: '',
+      overview: [],
+      showcaseProjects: [],
+    }
+  )
+}
+
+export async function getAboutPageTitle({
+  token,
+}: {
+  token?: string
+}): Promise<string | undefined> {
+  return await sanityClient(token)?.fetch(aboutPageTitleQuery)
 }
 
 export async function getPageBySlug({

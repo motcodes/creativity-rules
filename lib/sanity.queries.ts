@@ -1,18 +1,36 @@
 import { groq } from 'next-sanity'
 
+const showcaseProjects = groq`
+  showcaseProjects[]->{
+    _type,
+    coverImage, 
+    overview, 
+    "slug": "/projects/" + slug.current,
+    tags, 
+    title, 
+  } 
+`
+
+const overview = groq`
+  "overview": overview[]{
+    ...,
+    markDefs[]{
+      ...,
+      'reference': select(_type == 'linkInternal' => reference->{_type, 'slug': coalesce(slug.current, '')})
+    },
+    _type =='audio' => {
+      'url': asset->url,
+      'mimeType': asset->mimeType,
+    }
+  }
+`
+
 export const homePageQuery = groq`
   *[_type == "home"][0]{
     _id, 
     footer,
-    overview, 
-    showcaseProjects[]->{
-      _type,
-      coverImage, 
-      overview, 
-      "slug": slug.current,
-      tags, 
-      title, 
-    }, 
+    ${overview}, 
+    ${showcaseProjects}, 
     title, 
   }
 `
@@ -20,15 +38,8 @@ export const aboutPageQuery = groq`
   *[_type == "about"][0]{
     _id, 
     footer,
-    overview, 
-    showcaseProjects[]->{
-      _type,
-      coverImage, 
-      overview, 
-      "slug": slug.current,
-      tags, 
-      title, 
-    }, 
+    ${overview}, 
+    ${showcaseProjects}, 
     title, 
   }
 `
@@ -44,7 +55,7 @@ export const pagesBySlugQuery = groq`
   *[_type == "page" && slug.current == $slug][0] {
     _id,
     body,
-    overview,
+    ${overview}, 
     slug,
     title,
   }
@@ -54,18 +65,7 @@ export const projectBySlugQuery = groq`
   *[_type == "project" && slug.current == $slug][0] {
     _id,
     coverImage,
-    description[]{
-      ...,
-      markDefs[]{
-        ...,
-        'reference': select(_type == 'linkInternal' => reference->{_type, 'slug': coalesce(slug.current, '')})
-      },
-      _type =='audio' => {
-        'url': asset->url,
-        'mimeType': asset->mimeType,
-      },
-    },
-    overview,
+    ${overview},
     site, 
     "slug": slug.current,
     title,

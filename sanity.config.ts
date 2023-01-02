@@ -8,8 +8,8 @@ import { deskTool } from 'sanity/desk'
 import { unsplashImageAsset } from 'sanity-plugin-asset-source-unsplash'
 import schemas, {
   previewableDocumentTypes,
-  pageStructurePages,
   singeltonPages,
+  sharedComponents,
 } from 'schemas'
 
 const title = process.env.NEXT_PUBLIC_SANITY_PROJECT_TITLE || 'Creativity Rules'
@@ -22,12 +22,12 @@ export default defineConfig({
   schema: schemas,
   plugins: [
     deskTool({
-      structure: pageStructure(pageStructurePages),
+      structure: pageStructure(),
       // `defaultDocumentNode` is responsible for adding a “Preview” tab to the document pane
       defaultDocumentNode: previewDocumentNode({ apiVersion, previewSecretId }),
     }),
     // Configures the global "new document" button, and document actions, to suit the Settings document singleton
-    singletonPlugin(singeltonPages),
+    singletonPlugin([...singeltonPages, ...sharedComponents]),
     // Add the "Open preview" action
     productionUrl({
       apiVersion,

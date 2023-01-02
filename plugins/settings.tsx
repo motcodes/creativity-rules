@@ -1,11 +1,12 @@
-/**
- * This plugin contains all the logic for setting up the singletons
- */
-
 import { apiVersion, previewSecretId } from 'lib/sanity.api'
 import { type DocumentDefinition } from 'sanity'
 import { type StructureResolver } from 'sanity/desk'
-import { previewableDocumentTypes } from 'schemas'
+import {
+  pageStructurePages,
+  previewableDocumentTypes,
+  sharedComponents,
+  sharedComponentsStructurePages,
+} from 'schemas'
 
 import { PreviewPane } from './previewPane/PreviewPane'
 
@@ -38,51 +39,90 @@ export const singletonPlugin = (types: string[]) => {
 
 // The StructureResolver is how we're changing the DeskTool structure to linking to document (named Singleton)
 // like how "Home" is handled.
-export const pageStructure = (
-  typeDefArray: DocumentDefinition[]
-): StructureResolver => {
+export const pageStructure = (): // typeDefArray: DocumentDefinition[]
+StructureResolver => {
+  const typeDefArray = pageStructurePages
   return (S) => {
     // Goes through all of the singletons that were provided and translates them into something the
     // Desktool can understand
-    const singletonItems = typeDefArray.map((typeDef) => {
-      return S.listItem()
-        .title(typeDef.title)
-        .icon(typeDef.icon)
-        .child(
-          S.editor()
-            .id(typeDef.name)
-            .schemaType(typeDef.name)
-            .documentId(typeDef.name)
-            .views([
-              // @todo: consider DRYing with `plugins/previewPane/index.tsx`
-              // Default form view
-              S.view.form(),
-              // Preview
-              ...(previewableDocumentTypes.includes(typeDef.name)
-                ? [
-                    S.view
-                      .component((props) => (
-                        <PreviewPane
-                          previewSecretId={previewSecretId}
-                          apiVersion={apiVersion}
-                          {...props}
-                        />
-                      ))
-                      .title('Preview'),
-                  ]
-                : []),
-            ])
-        )
-    })
+    const singletonItems = showSingletonEditor(typeDefArray, S)
+    const sharedComponentsListItems = showSingletonEditor(
+      sharedComponentsStructurePages,
+      S
+    )
+
+    // const sharedComponentsListItems = S.documentTypeListItems().filter(
+    //   (listItem) => {
+    //     return sharedComponentsStructurePages.find(
+    //       (shared) => shared.name === listItem.getId()
+    //     )
+    //   }
+    // )
 
     // The default root list items (except custom ones)
     const defaultListItems = S.documentTypeListItems().filter(
       (listItem) =>
-        !typeDefArray.find((singleton) => singleton.name === listItem.getId())
+        ![...typeDefArray, ...sharedComponentsStructurePages].find(
+          (item) => item.name === listItem.getId()
+        )
     )
 
     return S.list()
-      .title('Content')
-      .items([...singletonItems, S.divider(), ...defaultListItems])
+      .id('list')
+      .title('Singelton Pages')
+      .items([
+        ...singletonItems,
+        S.divider(),
+        S.listItem()
+          .title('Generic Pages')
+          .id('generic')
+          .child(
+            S.list()
+              .title('Generic Pages')
+              .id('generic-list')
+              .items([...defaultListItems])
+          ),
+        S.divider(),
+        S.listItem()
+          .title('Shared Components')
+          .id('shared')
+          .child(
+            S.list()
+              .title('Shared Components')
+              .id('shared-list')
+              .items([...sharedComponentsListItems])
+          ),
+      ])
   }
 }
+
+const showSingletonEditor = (arr, S) =>
+  arr.map((typeDef) =>
+    S.listItem()
+      .title(typeDef.title)
+      .icon(typeDef.icon)
+      .child(
+        S.editor()
+          .id(typeDef.name)
+          .schemaType(typeDef.name)
+          .documentId(typeDef.name)
+          .views([
+            // Default form view
+            S.view.form(),
+            // Preview
+            ...(previewableDocumentTypes.includes(typeDef.name)
+              ? [
+                  S.view
+                    .component((props) => (
+                      <PreviewPane
+                        previewSecretId={previewSecretId}
+                        apiVersion={apiVersion}
+                        {...props}
+                      />
+                    ))
+                    .title('Preview'),
+                ]
+              : []),
+          ])
+      )
+  )

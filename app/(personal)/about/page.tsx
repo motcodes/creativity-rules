@@ -2,21 +2,14 @@ import { HomePage } from 'components/pages/home/HomePage'
 import { HomePagePreview } from 'components/pages/home/HomePagePreview'
 import { PreviewSuspense } from 'components/preview/PreviewSuspense'
 import { PreviewWrapper } from 'components/preview/PreviewWrapper'
-import { getPageBySlug } from 'lib/sanity.client'
+import { getAboutPage } from 'lib/sanity.client'
 import { previewData } from 'next/headers'
 import { notFound } from 'next/navigation'
 
-export default async function AboutRoute({
-  params,
-}: {
-  params: { slug: string }
-}) {
+export default async function AboutRoute() {
   const token = previewData().token || null
-  const data = (await getPageBySlug({ token, slug: params.slug })) || {
-    title: '',
-    overview: [],
-    showcaseProjects: [],
-  }
+  const data = await getAboutPage({ token })
+  console.log('data :', data)
 
   if (!data && !token) {
     notFound()

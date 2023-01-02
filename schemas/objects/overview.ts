@@ -1,7 +1,8 @@
 import { defineType, defineArrayMember } from 'sanity'
+import { LaunchIcon, LinkIcon } from '@sanity/icons'
 
 export default defineType({
-  title: 'Overview',
+  title: 'Description',
   description:
     'Used both for the <meta> description tag for SEO, and project subheader.',
   name: 'overview',
@@ -10,7 +11,22 @@ export default defineType({
     defineArrayMember({
       lists: [],
       marks: {
-        annotations: [],
+        annotations: [
+          {
+            title: 'Internal Link',
+            name: 'linkInternal',
+            type: 'linkInternal',
+            // @ts-ignore
+            blockEditor: { icon: LinkIcon },
+          },
+          {
+            title: 'External Link',
+            name: 'linkExternal',
+            type: 'linkExternal',
+            // @ts-ignore
+            blockEditor: { icon: LaunchIcon },
+          },
+        ],
         decorators: [
           { title: 'Italic', value: 'em' },
           { title: 'Strong', value: 'strong' },
