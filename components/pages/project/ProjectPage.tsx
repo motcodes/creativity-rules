@@ -3,6 +3,7 @@ import { Header } from 'components/shared/Header'
 import ImageBox from 'components/shared/ImageBox'
 import ScrollUp from 'components/shared/ScrollUp'
 import Link from 'next/link'
+import { Fragment } from 'react'
 import { Block, Image } from 'sanity'
 
 export interface ProjectPayload {
@@ -81,7 +82,7 @@ export function ProjectPage({
                     <h4>Credits:</h4>
                     <ul>
                       {item.credits.map((subitem) => (
-                        <li>{subitem}</li>
+                        <li key={subitem}>{subitem}</li>
                       ))}
                     </ul>
                   </>

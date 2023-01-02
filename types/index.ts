@@ -34,6 +34,12 @@ export interface HomePagePayload {
   showcaseProjects?: ShowcaseProject[]
   title?: string
 }
+export interface AboutPagePayload {
+  footer?: Block[]
+  overview?: Block[]
+  showcaseProjects?: ShowcaseProject[]
+  title?: string
+}
 
 export interface PagePayload {
   body?: Block[]

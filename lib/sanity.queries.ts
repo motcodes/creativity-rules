@@ -16,9 +16,28 @@ export const homePageQuery = groq`
     title, 
   }
 `
+export const aboutPageQuery = groq`
+  *[_type == "about"][0]{
+    _id, 
+    footer,
+    overview, 
+    showcaseProjects[]->{
+      _type,
+      coverImage, 
+      overview, 
+      "slug": slug.current,
+      tags, 
+      title, 
+    }, 
+    title, 
+  }
+`
 
 export const homePageTitleQuery = groq`
   *[_type == "home"][0].title
+`
+export const aboutPageTitleQuery = groq`
+  *[_type == "about"][0].title
 `
 
 export const pagesBySlugQuery = groq`

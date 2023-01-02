@@ -5,8 +5,8 @@
 import { apiVersion, previewSecretId } from 'lib/sanity.api'
 import { type DocumentDefinition } from 'sanity'
 import { type StructureResolver } from 'sanity/desk'
+import { previewableDocumentTypes } from 'schemas'
 
-import { PREVIEWABLE_DOCUMENT_TYPES } from '../sanity.config'
 import { PreviewPane } from './previewPane/PreviewPane'
 
 export const singletonPlugin = (types: string[]) => {
@@ -58,7 +58,7 @@ export const pageStructure = (
               // Default form view
               S.view.form(),
               // Preview
-              ...(PREVIEWABLE_DOCUMENT_TYPES.includes(typeDef.name)
+              ...(previewableDocumentTypes.includes(typeDef.name)
                 ? [
                     S.view
                       .component((props) => (

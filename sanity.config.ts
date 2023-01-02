@@ -6,51 +6,33 @@ import { pageStructure, singletonPlugin } from 'plugins/settings'
 import { defineConfig } from 'sanity'
 import { deskTool } from 'sanity/desk'
 import { unsplashImageAsset } from 'sanity-plugin-asset-source-unsplash'
-import page from 'schemas/documents/page'
-import project from 'schemas/documents/project'
-import objects from 'schemas/objects'
-import home from 'schemas/singletons/home'
-import settings from 'schemas/singletons/settings'
+import schemas, {
+  previewableDocumentTypes,
+  pageStructurePages,
+  singeltonPages,
+} from 'schemas'
 
 const title = process.env.NEXT_PUBLIC_SANITY_PROJECT_TITLE || 'Creativity Rules'
-
-export const PREVIEWABLE_DOCUMENT_TYPES: string[] = [
-  home.name,
-  page.name,
-  project.name,
-]
 
 export default defineConfig({
   basePath: '/studio',
   projectId: projectId || '',
   dataset: dataset || '',
   title,
-  schema: {
-    // If you want more content types, you can add them to this array
-    types: [
-      // Singletons
-      home,
-      settings,
-      // Documents
-      page,
-      project,
-      // Objects
-      ...objects,
-    ],
-  },
+  schema: schemas,
   plugins: [
     deskTool({
-      structure: pageStructure([home, settings]),
+      structure: pageStructure(pageStructurePages),
       // `defaultDocumentNode` is responsible for adding a “Preview” tab to the document pane
       defaultDocumentNode: previewDocumentNode({ apiVersion, previewSecretId }),
     }),
     // Configures the global "new document" button, and document actions, to suit the Settings document singleton
-    singletonPlugin([home.name, settings.name]),
+    singletonPlugin(singeltonPages),
     // Add the "Open preview" action
     productionUrl({
       apiVersion,
       previewSecretId,
-      types: PREVIEWABLE_DOCUMENT_TYPES,
+      types: previewableDocumentTypes,
     }),
     // Add an image asset source for Unsplash
     unsplashImageAsset(),
