@@ -49,11 +49,7 @@ export function CustomPortableText({
       },
     },
     types: {
-      image: ({
-        value,
-      }: {
-        value: Image & { alt?: string; caption?: string }
-      }) => {
+      imageAlt: ({ value }: { value: Image & { alt?: string } }) => {
         return (
           <div className="my-6 space-y-2">
             <ImageBox
@@ -61,10 +57,22 @@ export function CustomPortableText({
               alt={value.alt}
               classesWrapper="relative aspect-[16/9]"
             />
-            {value?.caption && (
-              <div className="font-sans text-sm text-gray-600">
-                {value.caption}
-              </div>
+            {value?.alt && (
+              <div className="text-sm text-gray-600">{value.alt}</div>
+            )}
+          </div>
+        )
+      },
+      imageFull: ({ value }: { value: Image & { alt?: string } }) => {
+        return (
+          <div className="my-6 space-y-2">
+            <ImageBox
+              image={value}
+              alt={value.alt}
+              classesWrapper="relative aspect-[16/9]"
+            />
+            {value?.alt && (
+              <div className="text-sm text-gray-600">{value.alt}</div>
             )}
           </div>
         )

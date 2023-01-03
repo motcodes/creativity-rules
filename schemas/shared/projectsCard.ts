@@ -1,9 +1,11 @@
 import { defineField, defineType } from 'sanity'
+import { ComponentIcon } from '@sanity/icons'
 
 export default defineType({
   name: 'projectsCard',
   title: 'Project Card',
   type: 'document',
+  icon: ComponentIcon,
   fields: [
     defineField({
       name: 'title',

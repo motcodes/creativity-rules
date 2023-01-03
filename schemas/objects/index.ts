@@ -6,9 +6,12 @@ import overview from './overview'
 import blockContent from './blockContent'
 import audio from './audio'
 import team from './team'
+import imageAlt from './imageAlt'
+import video from './video'
 
 export default [
   ...link,
+  imageAlt,
   blockContent,
   duration,
   milestone,
@@ -16,4 +19,5 @@ export default [
   audio,
   overview,
   team,
+  video,
 ]

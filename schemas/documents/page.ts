@@ -1,11 +1,11 @@
-import { DocumentIcon, ImageIcon } from '@sanity/icons'
-import { defineArrayMember, defineField, defineType } from 'sanity'
+import { DashboardIcon } from '@sanity/icons'
+import { defineField, defineType } from 'sanity'
 
 export default defineType({
   type: 'document',
   name: 'page',
   title: 'Page',
-  icon: DocumentIcon,
+  icon: DashboardIcon,
   fields: [
     defineField({
       type: 'string',

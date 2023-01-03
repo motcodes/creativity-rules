@@ -1,10 +1,9 @@
 import { apiVersion, previewSecretId } from 'lib/sanity.api'
-import { type DocumentDefinition } from 'sanity'
+import { ComponentIcon } from '@sanity/icons'
 import { type StructureResolver } from 'sanity/desk'
 import {
   pageStructurePages,
   previewableDocumentTypes,
-  sharedComponents,
   sharedComponentsStructurePages,
 } from 'schemas'
 
@@ -51,14 +50,6 @@ StructureResolver => {
       S
     )
 
-    // const sharedComponentsListItems = S.documentTypeListItems().filter(
-    //   (listItem) => {
-    //     return sharedComponentsStructurePages.find(
-    //       (shared) => shared.name === listItem.getId()
-    //     )
-    //   }
-    // )
-
     // The default root list items (except custom ones)
     const defaultListItems = S.documentTypeListItems().filter(
       (listItem) =>
@@ -73,19 +64,12 @@ StructureResolver => {
       .items([
         ...singletonItems,
         S.divider(),
-        S.listItem()
-          .title('Generic Pages')
-          .id('generic')
-          .child(
-            S.list()
-              .title('Generic Pages')
-              .id('generic-list')
-              .items([...defaultListItems])
-          ),
+        ...defaultListItems,
         S.divider(),
         S.listItem()
           .title('Shared Components')
           .id('shared')
+          .icon(ComponentIcon)
           .child(
             S.list()
               .title('Shared Components')

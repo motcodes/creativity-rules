@@ -25,22 +25,34 @@ const overview = groq`
   }
 `
 
+const departments = groq`
+  departments[]->{
+    title,
+    value,
+    _id,
+    courseOfStudies->{
+      title,
+      value
+    }
+  }
+`
+
 export const homePageQuery = groq`
   *[_type == "home"][0]{
     _id, 
     footer,
+    title, 
     ${overview}, 
     ${showcaseProjects}, 
-    title, 
   }
 `
 export const aboutPageQuery = groq`
   *[_type == "about"][0]{
     _id, 
     footer,
+    title, 
     ${overview}, 
     ${showcaseProjects}, 
-    title, 
   }
 `
 
@@ -55,9 +67,9 @@ export const pagesBySlugQuery = groq`
   *[_type == "page" && slug.current == $slug][0] {
     _id,
     body,
-    ${overview}, 
     slug,
     title,
+    ${overview}, 
   }
 `
 
@@ -65,12 +77,14 @@ export const projectBySlugQuery = groq`
   *[_type == "project" && slug.current == $slug][0] {
     _id,
     coverImage,
-    ${overview},
     site, 
     "slug": slug.current,
     title,
     socialLinks,
-    team
+    team,
+    description,
+    ${overview},
+    ${departments}
   }
 `
 

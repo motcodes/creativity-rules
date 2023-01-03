@@ -43,34 +43,16 @@ export default defineField({
       name: 'timeline',
       type: 'timeline',
     }),
-    defineField({
-      type: 'image',
-      icon: ImageIcon,
-      name: 'image',
+    defineArrayMember({
       title: 'Image',
-      options: {
-        hotspot: true,
-      },
-      preview: {
-        select: {
-          imageUrl: 'asset.url',
-          title: 'caption',
-        },
-      },
-      fields: [
-        defineField({
-          title: 'Caption',
-          name: 'caption',
-          type: 'string',
-        }),
-        defineField({
-          name: 'alt',
-          type: 'string',
-          title: 'Alt text',
-          description:
-            'Alternative text for screenreaders. Falls back on caption if not set',
-        }),
-      ],
+      name: 'imageAlt',
+      type: 'imageAlt',
+    }),
+    defineArrayMember({
+      title: 'Image Full',
+      description: 'Image which takes up all the screen width',
+      name: 'imageFull',
+      type: 'imageAlt',
     }),
     defineArrayMember({
       name: 'audio',
@@ -80,39 +62,9 @@ export default defineField({
       },
     }),
     defineArrayMember({
+      title: 'Video',
       name: 'video',
-      type: 'object',
-      fields: [
-        {
-          name: 'poster',
-          type: 'image',
-          description: 'Ratio of the poster should be the same that the video.',
-          options: { hotspot: true, accept: '.jpg, .jpeg' },
-          validation: (Rule) => Rule.required(),
-        },
-        {
-          title: 'Video showcase sources (Vimeo)',
-          name: 'videoSrcs',
-          type: 'object',
-          fields: [
-            {
-              title: 'URL mobile',
-              name: 'urlMobile',
-              type: 'string',
-              validation: (Rule) => Rule.required(),
-            },
-            {
-              title: 'URL desktop',
-              name: 'urlDesktop',
-              type: 'string',
-              validation: (Rule) => Rule.required(),
-            },
-          ],
-        },
-      ],
-      preview: {
-        prepare: () => ({ title: 'Video' }),
-      },
+      type: 'video',
     }),
     defineArrayMember({
       title: 'Blockquote',

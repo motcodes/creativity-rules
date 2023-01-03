@@ -6,6 +6,8 @@ import home from './singletons/home'
 import settings from './singletons/settings'
 
 import projectsCard from './shared/projectsCard'
+import courseOfStudies from './documents/courseOfStudies'
+import deparment from './documents/deparment'
 
 export default {
   // If you want more content types, you can add them to this array
@@ -17,6 +19,8 @@ export default {
     // Documents
     page,
     project,
+    courseOfStudies,
+    deparment,
     //shared
     projectsCard,
     // Objects

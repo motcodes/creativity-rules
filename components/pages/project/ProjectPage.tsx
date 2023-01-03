@@ -27,6 +27,12 @@ export interface ProjectPayload {
       url: string
     }
   }>
+  departments: Array<{
+    _id: string
+    courseOfStudies: { title: string; value: string }
+    title: string
+    value: string
+  }>
 }
 
 export function ProjectPage({
@@ -37,11 +43,30 @@ export function ProjectPage({
   title,
   socialLinks,
   team,
+  departments,
 }: ProjectPayload) {
+  console.log('department :', departments)
   return (
     <div>
       <div className="mb-20 space-y-6">
         <Header title={title} description={overview} />
+
+        <div className="py-10">
+          <h2 className="text-lg font-bold mb-5">Departments</h2>
+          <ul className="list-none flex flex-col gap-2 m-0">
+            {socialLinks.map((item) => (
+              <li key={item._key}>
+                <Link
+                  target="_blank"
+                  href={item.url}
+                  className="text-md md:text-lg underline transition hover:opacity-50"
+                >
+                  {item.label}
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </div>
 
         <div className="py-10">
           <h2 className="text-lg font-bold mb-5">Social Links</h2>

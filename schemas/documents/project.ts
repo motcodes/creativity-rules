@@ -1,12 +1,12 @@
-import { DocumentIcon } from '@sanity/icons'
+import { PresentationIcon } from '@sanity/icons'
+import { BAMA, MAIN_DEPARMENT, COURSE_OF_STUDIES } from 'types/constants'
 import { defineArrayMember, defineField, defineType } from 'sanity'
 
 export default defineType({
   name: 'project',
   title: 'Project',
   type: 'document',
-  icon: DocumentIcon,
-  // liveEdit: true,
+  icon: PresentationIcon,
   fields: [
     defineField({
       name: 'title',
@@ -32,14 +32,15 @@ export default defineType({
       validation: (rule) => rule.required(),
     }),
     defineField({
+      name: 'logo',
+      type: 'imageAlt',
+    }),
+    defineField({
       name: 'coverImage',
       title: 'Cover Image',
       description:
         'This image will be used as the cover image for the project. If you choose to add it to the show case projects, this is the image displayed in the list within the homepage.',
-      type: 'image',
-      options: {
-        hotspot: true,
-      },
+      type: 'imageAlt',
       validation: (rule) => rule.required(),
     }),
     defineField({
@@ -63,6 +64,25 @@ export default defineType({
       title: 'Team',
       name: 'team',
       type: 'team',
+    }),
+    defineField({
+      title: 'Degree',
+      name: 'degree',
+      type: 'string',
+      initialValue: 'bachelor',
+      options: {
+        list: BAMA.map((item) => item.value),
+        layout: 'radio',
+        direction: 'horizontal',
+      },
+      validation: (rule) => rule.required(),
+    }),
+    defineField({
+      title: 'Deparments',
+      name: 'departments',
+      type: 'array',
+      of: [{ type: 'reference', to: [{ type: 'department' }] }],
+      validation: (rule) => rule.required(),
     }),
     defineField({
       name: 'description',
