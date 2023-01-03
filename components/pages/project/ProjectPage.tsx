@@ -10,6 +10,7 @@ export interface ProjectPayload {
   title?: string
   overview?: Block[]
   coverImage?: Image
+  logo?: Image
   slug: string
   description?: Block[]
   site?: string
@@ -44,31 +45,45 @@ export function ProjectPage({
   socialLinks,
   team,
   departments,
+  logo,
 }: ProjectPayload) {
-  console.log('department :', departments)
+  const courseOfStudies = departments
+    .filter(
+      (value, index, self) =>
+        index ===
+        self.findIndex(
+          (t) => t.courseOfStudies.value === value.courseOfStudies.value
+        )
+    )
+    .map((item) => item.courseOfStudies)
+
   return (
     <div>
       <div className="mb-20 space-y-6">
-        <Header title={title} description={overview} />
+        <Header logo={logo} title={title} description={overview} />
 
-        <div className="py-10">
-          <h2 className="text-lg font-bold mb-5">Departments</h2>
-          <ul className="list-none flex flex-col gap-2 m-0">
-            {socialLinks.map((item) => (
-              <li key={item._key}>
-                <Link
-                  target="_blank"
-                  href={item.url}
-                  className="text-md md:text-lg underline transition hover:opacity-50"
-                >
-                  {item.label}
-                </Link>
+        <div className="py-5">
+          <h2 className="text-lg font-bold mb-1">
+            A Project by students from{' '}
+            {courseOfStudies.map((item, index) => (
+              <Fragment key={item.value}>
+                <span>{item.title}</span>
+                {index !== courseOfStudies.length - 1 && <span>, </span>}
+              </Fragment>
+            ))}
+          </h2>
+          <ul className="list-none flex flex-row gap-2 m-0">
+            <li>Departments:</li>
+            {departments.map((item, index) => (
+              <li key={item._id}>
+                <span>{item.title}</span>
+                {index !== departments.length - 1 && <span>, </span>}
               </li>
             ))}
           </ul>
         </div>
 
-        <div className="py-10">
+        <div className="py-5">
           <h2 className="text-lg font-bold mb-5">Social Links</h2>
           <ul className="list-none flex flex-col gap-2 m-0">
             {socialLinks.map((item) => (
@@ -85,7 +100,7 @@ export function ProjectPage({
           </ul>
         </div>
 
-        <div className="py-10">
+        <div className="py-5">
           <h2 className="text-lg font-bold mb-5">Team</h2>
           <ul className="list-none flex flex-col gap-2 m-0">
             {team.map((item) => (
@@ -105,9 +120,12 @@ export function ProjectPage({
                 {!!item.credits.length && (
                   <>
                     <h4>Credits:</h4>
-                    <ul>
-                      {item.credits.map((subitem) => (
-                        <li key={subitem}>{subitem}</li>
+                    <ul className="flex flex-row gap-2">
+                      {item.credits.map((subitem, index) => (
+                        <li key={subitem}>
+                          {subitem}
+                          {index !== item.credits.length - 1 && <span>, </span>}
+                        </li>
                       ))}
                     </ul>
                   </>
@@ -121,7 +139,7 @@ export function ProjectPage({
           <ImageBox
             image={coverImage}
             alt={`Cover image for ${title}`}
-            classesWrapper="relative aspect-[16/9]"
+            imageClassName="relative aspect-[16/9]"
           />
 
           <div className="divide-inherit grid grid-cols-1 divide-y lg:divide-y-0 lg:divide-x">

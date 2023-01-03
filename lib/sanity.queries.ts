@@ -77,6 +77,7 @@ export const projectBySlugQuery = groq`
   *[_type == "project" && slug.current == $slug][0] {
     _id,
     coverImage,
+    logo,
     site, 
     "slug": slug.current,
     title,
