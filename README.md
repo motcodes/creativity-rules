@@ -1,14 +1,19 @@
 # Dokku Static Site
 
-This is a dummy static site that you can deploy to a dokku app "x" quickly
-by running
+This is a dummy static site that you can deploy to a dokku app "x" quickly.
+Before using it for the first time, you need to add the dokku remote:
+
+    git remote add dokku ssh://dokku@projects.multimediatechnology.at:5412/friendsqueststaging
+
+later you can change that remote url by running
 
     rake static[x]
 
 This will:
 
-- change the title and h1 of the static site to display the name of the app
-- deploy to the dokku app
+- change the title and h1 of the static site to display the name of the app "x"
+- change the remote url to point the the app x
+- deploy to the dokku 
 
 ## TODO:
 
