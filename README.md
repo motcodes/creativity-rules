@@ -1,6 +1,16 @@
 # Dokku Static Site
 
-TODO:
+This is a dummy static site that you can deploy to a dokku app "x" quickly
+by running
+
+    rake static[x]
+
+This will:
+
+- change the title and h1 of the static site to display the name of the app
+- deploy to the dokku app
+
+## TODO:
 
        ## WARNING: `heroku-buildpack-static` is deprecated
 
@@ -92,36 +102,4 @@ Gesamt 323 (Delta 163), Wiederverwendet 105 (Delta 36), Pack wiederverwendet 0
        - Remove this buildpack via `heroku buildpacks:remove heroku-community/static` (or `heroku buildpacks:remove https://github.com/heroku/heroku-buildpack-static`).
 
 
-
-This is a reusable Docker image that allows to deploy static sites to Dokku with Dockerfile (and without using buildbacks). Runs an nginx web worker to serve your index.html site.
-
-based on [dokku-static-site](https://github.com/shrmnk/dokku-static-site)
-
-## Instructions
-
-1. Clone this repo
-
-```
-git clone https://gitlab.mediacube.at/mediacube/dokku-static-site
-cd dokku-static-site
-```
-
-2. Make changes to your site (by default, we have index.html and 404.html) and commit them
-
-```
-git add .
-git commit -m "<Commit message>"
-```
-
-3. Add dokku host as a git remote
-
-```
-git remote add dokku dokku@<dokku.host>:<app-name>
-```
-
-4. Push to dokku
-
-```
-git push dokku master
-```
 
