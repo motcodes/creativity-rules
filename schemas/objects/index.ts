@@ -8,6 +8,7 @@ import audio from './audio'
 import team from './team'
 import imageAlt from './imageAlt'
 import video from './video'
+import seo from './seo'
 
 export default [
   ...link,
@@ -20,4 +21,5 @@ export default [
   overview,
   team,
   video,
+  seo,
 ]

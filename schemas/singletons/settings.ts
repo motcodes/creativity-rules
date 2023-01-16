@@ -1,74 +1,68 @@
 import { CogIcon } from '@sanity/icons'
-import { defineArrayMember, defineField, defineType } from 'sanity'
+import { defineField, defineType } from 'sanity'
 
 export default defineType({
   name: 'settings',
   title: 'Settings',
   type: 'document',
   icon: CogIcon,
+  groups: [
+    {
+      default: true,
+      title: 'Body',
+      name: 'body',
+    },
+    {
+      title: 'Seo',
+      name: 'seo',
+    },
+  ],
   fields: [
     defineField({
-      name: 'menuItems',
-      title: 'Menu Item list',
+      name: 'navigation',
+      title: 'Navigation',
       description: 'Links displayed on the header of your site.',
       type: 'array',
+      group: 'body',
       of: [
         {
-          title: 'Reference',
           type: 'reference',
-          to: [
-            {
-              type: 'home',
-            },
-            {
-              type: 'about',
-            },
-            {
-              type: 'page',
-            },
-            {
-              type: 'project',
-            },
-          ],
+          to: [{ type: 'page' }, { type: 'home' }, { type: 'about' }],
+        },
+      ],
+    }),
+
+    defineField({
+      name: 'socialLinks',
+      title: 'Social Media Links',
+      type: 'array',
+      group: 'body',
+      of: [
+        {
+          title: 'Link',
+          type: 'linkSocial',
         },
       ],
     }),
     defineField({
-      name: 'footer',
-      description:
-        'This is a block of text that will be displayed at the bottom of the page.',
-      title: 'Footer Info',
+      name: 'footerLinks',
+      title: 'Footer Links',
       type: 'array',
-      of: [
-        defineArrayMember({
-          type: 'block',
-          marks: {
-            annotations: [
-              {
-                name: 'link',
-                type: 'object',
-                title: 'Link',
-                fields: [
-                  {
-                    name: 'href',
-                    type: 'url',
-                    title: 'Url',
-                  },
-                ],
-              },
-            ],
-          },
-        }),
-      ],
+      group: 'body',
+      of: [{ title: 'Link', type: 'linkWithLabel' }],
     }),
+
     defineField({
-      name: 'ogImage',
-      title: 'Open Graph Image',
+      name: 'logo',
       type: 'image',
-      description: 'Displayed on social cards and search engine results.',
-      options: {
-        hotspot: true,
-      },
+      group: 'body',
+    }),
+
+    // Seo
+    defineField({
+      name: 'SEO',
+      type: 'seo',
+      group: 'seo',
     }),
   ],
   preview: {

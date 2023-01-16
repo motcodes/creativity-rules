@@ -21,6 +21,10 @@ const linkSocial = {
         list: [
           { title: 'LinkedIn', value: 'linkedin' },
           { title: 'Twitter', value: 'twitter' },
+          { title: 'Facebook', value: 'facebook' },
+          { title: 'Instagram', value: 'instagram' },
+          { title: 'YouTube', value: 'youtube' },
+          { title: 'Soundcloud', value: 'soundcloud' },
         ],
       },
       validation: (Rule) => Rule.required(),
@@ -93,13 +97,22 @@ const linkInternal = {
       title: 'Document',
       name: 'reference',
       type: 'reference',
-      to: [{ type: 'page' }, { type: 'home' }, { type: 'project' }],
+      to: [
+        { type: 'page' },
+        { type: 'home' },
+        { type: 'project' },
+        { type: 'about' },
+      ],
       validation: (Rule) => Rule.required(),
     },
   ],
   preview: {
     select: {
       title: 'url',
+    },
+    prepare: ({ title }) => {
+      console.log('title :', title)
+      return { title }
     },
   },
 }
@@ -130,7 +143,7 @@ const linkInternalWithLabel = {
 
 const link = {
   title: 'Link',
-  name: 'linkCustom',
+  name: 'link',
   type: 'object',
   fields: [
     {
@@ -180,7 +193,7 @@ const link = {
 
 const linkWithLabel = {
   title: 'Link',
-  name: 'linkCustomWithLabel',
+  name: 'linkWithLabel',
   type: 'object',
   fields: [
     {
@@ -215,13 +228,13 @@ const linkWithLabel = {
       switch (type) {
         case 'external':
           return {
-            title: external?.label?.en,
+            title: external?.label,
             subtitle: external?.url,
             media: LaunchIcon,
           }
         case 'internal':
           return {
-            title: internal?.label?.en,
+            title: internal?.label,
             subtitle: internalSlug,
             media: LinkIcon,
           }
