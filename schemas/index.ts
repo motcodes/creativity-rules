@@ -8,6 +8,7 @@ import settings from './singletons/settings'
 import projectsCard from './shared/projectsCard'
 import courseOfStudies from './documents/courseOfStudies'
 import deparment from './documents/deparment'
+import speaker from './documents/speaker'
 
 export default {
   // If you want more content types, you can add them to this array
@@ -21,6 +22,7 @@ export default {
     project,
     courseOfStudies,
     deparment,
+    speaker,
     //shared
     projectsCard,
     // Objects
@@ -44,4 +46,5 @@ export const previewableDocumentTypes: Array<string> = [
   about.name,
   page.name,
   project.name,
+  speaker.name,
 ]

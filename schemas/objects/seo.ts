@@ -20,9 +20,6 @@ export default defineType({
       type: 'image',
       description:
         'Displayed on social cards and search engine results. (1140x600)',
-      options: {
-        hotspot: true,
-      },
     }),
   ],
 })
