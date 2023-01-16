@@ -1,11 +1,11 @@
-import { PresentationIcon } from '@sanity/icons'
+import { IceCreamIcon } from '@sanity/icons'
 import { defineArrayMember, defineField, defineType } from 'sanity'
 
 export default defineType({
   name: 'speaker',
   title: 'Speaker',
   type: 'document',
-  icon: PresentationIcon,
+  icon: IceCreamIcon,
   groups: [
     { name: 'talk', title: 'Talk', default: true },
     { name: 'speaker', title: 'Speaker' },
