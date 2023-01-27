@@ -12,7 +12,7 @@ export default defineType({
     { name: 'seo', title: 'SEO' },
   ],
   fields: [
-    //Talk
+    // SEO
     defineField({
       name: 'seo',
       title: 'SEO',
@@ -20,7 +20,7 @@ export default defineType({
       group: 'seo',
       validation: (rule) => rule.required(),
     }),
-    //Talk
+    // Talk
     defineField({
       name: 'title',
       title: 'Title',
@@ -113,4 +113,16 @@ export default defineType({
       group: 'speaker',
     }),
   ],
+  preview: {
+    select: {
+      title: 'title',
+      subtitle: 'name',
+      media: 'speakerImage.asset',
+    },
+    prepare: ({ title, subtitle, media }) => ({
+      title,
+      subtitle,
+      media,
+    }),
+  },
 })

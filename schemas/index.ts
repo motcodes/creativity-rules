@@ -10,6 +10,7 @@ import courseOfStudies from './documents/courseOfStudies'
 import deparment from './documents/deparment'
 import speaker from './documents/speaker'
 import venue from './singletons/venue'
+import stage from './singletons/stage'
 
 export default {
   // If you want more content types, you can add them to this array
@@ -19,6 +20,7 @@ export default {
     about,
     venue,
     settings,
+    stage,
     // Documents
     page,
     project,
@@ -32,13 +34,14 @@ export default {
   ],
 }
 
-export const pageStructurePages = [home, about, venue, settings]
+export const pageStructurePages = [home, about, venue, stage, settings]
 export const sharedComponentsStructurePages = [projectsCard]
 
 export const singeltonPages: Array<string> = [
   home.name,
   about.name,
   venue.name,
+  stage.name,
   settings.name,
 ]
 
@@ -48,6 +51,7 @@ export const previewableDocumentTypes: Array<string> = [
   home.name,
   about.name,
   venue.name,
+  stage.name,
   page.name,
   project.name,
   speaker.name,

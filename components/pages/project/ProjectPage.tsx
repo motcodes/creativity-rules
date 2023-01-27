@@ -5,8 +5,10 @@ import ScrollUp from 'components/shared/ScrollUp'
 import Link from 'next/link'
 import { Fragment } from 'react'
 import { Block, Image } from 'sanity'
+import { SEOProps } from 'types'
 
 export interface ProjectPayload {
+  seo: SEOProps
   title?: string
   overview?: Block[]
   coverImage?: Image

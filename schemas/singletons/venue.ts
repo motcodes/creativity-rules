@@ -7,11 +7,11 @@ export default defineType({
   type: 'document',
   icon: CircleIcon,
   groups: [
-    { name: 'body', title: 'body', default: true },
+    { name: 'body', title: 'Body', default: true },
     { name: 'seo', title: 'SEO' },
   ],
   fields: [
-    //Talk
+    // SEO
     defineField({
       name: 'seo',
       title: 'SEO',

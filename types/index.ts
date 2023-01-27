@@ -48,9 +48,21 @@ export interface PagePayload {
   overview?: Block[]
   title?: string
 }
+export interface StagePayload {
+  seo?: SEOProps
+  title?: string
+  stream?: string
+  schedule?: Array<unknown>
+}
 
 export interface SettingsPayload {
   footer?: Block[]
   menuItems?: MenuItem[]
   ogImage?: Image
+}
+
+export interface SEOProps {
+  title: string
+  description: Block[]
+  ogImage: Image
 }

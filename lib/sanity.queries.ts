@@ -56,10 +56,26 @@ export const aboutPageQuery = groq`
   }
 `
 
+export const stagePageQuery = groq`
+  *[_type == "stage"][0]{
+    _id, 
+    title,
+    stream,
+    schedule,
+    seo,
+  }
+`
+
+export const seoPageQuery = (page: string) => groq`
+  *[_type == ${page}][0].seo
+`
 export const homePageTitleQuery = groq`
-  *[_type == "home"][0].title
+  *[_type == 'home'][0].title
 `
 export const aboutPageTitleQuery = groq`
+  *[_type == "about"][0].title
+`
+export const stagePageTitleQuery = groq`
   *[_type == "about"][0].title
 `
 
@@ -76,6 +92,7 @@ export const pagesBySlugQuery = groq`
 export const projectBySlugQuery = groq`
   *[_type == "project" && slug.current == $slug][0] {
     _id,
+    seo,
     coverImage,
     logo,
     site, 
