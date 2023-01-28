@@ -1,32 +1,24 @@
-import * as demo from 'lib/demo.data'
-import { urlForImage } from 'lib/sanity.image'
+import { urlForSeoImage } from 'lib/sanity.image'
 import type { Image } from 'sanity'
 
-/**
- * All the shared stuff that goes into <head> on `(personal)` routes, can be be imported by `head.tsx` files in the /app dir or wrapped in a <Head> component in the /pages dir.
- */
+const BASE_TITLE = 'Creativity Rules 2023'
 export function SiteMeta({
-  baseTitle,
   description,
   image,
   title,
 }: {
-  baseTitle?: string
   description?: string
   image?: Image
   title?: string
 }) {
-  const metaTitle = [
-    ...(title ? [title] : []),
-    ...(baseTitle ? [baseTitle] : []),
-  ].join(' | ')
+  const _title = title ? `${title} | ` : ''
+  const metaTitle = `${_title}${BASE_TITLE}`
 
-  const imageUrl =
-    image && urlForImage(image)?.width(1200).height(627).fit('crop').url()
+  const imageUrl = image && urlForSeoImage(image)
 
   return (
     <>
-      <title>{metaTitle || demo.title}</title>
+      <title>{metaTitle}</title>
       <meta name="viewport" content="width=device-width,initial-scale=1.0" />
       <link
         rel="apple-touch-icon"

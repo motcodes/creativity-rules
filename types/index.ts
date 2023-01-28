@@ -1,9 +1,10 @@
 import type { Block, Image } from 'sanity'
 
-export interface MenuItem {
-  _type: string
-  slug?: string
-  title?: string
+export interface LinkItem {
+  slug: string
+  label: string
+  network?: string
+  type: 'internal' | 'external' | 'social'
 }
 
 export interface MilestoneItem {
@@ -56,9 +57,10 @@ export interface StagePayload {
 }
 
 export interface SettingsPayload {
-  footer?: Block[]
-  menuItems?: MenuItem[]
-  ogImage?: Image
+  footerLinks?: Array<LinkItem>
+  navigation?: Array<LinkItem>
+  logo?: Image
+  socialLinks: Array<LinkItem>
 }
 
 export interface SEOProps {

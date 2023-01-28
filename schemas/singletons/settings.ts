@@ -7,17 +7,18 @@ export default defineType({
   type: 'document',
   icon: CogIcon,
   groups: [
-    {
-      default: true,
-      title: 'Body',
-      name: 'body',
-    },
-    {
-      title: 'Seo',
-      name: 'seo',
-    },
+    { default: true, title: 'Body', name: 'body' },
+    { title: 'Seo', name: 'seo' },
   ],
   fields: [
+    // Seo
+    defineField({
+      name: 'seo',
+      title: 'SEO',
+      type: 'seo',
+      group: 'seo',
+    }),
+
     defineField({
       name: 'navigation',
       title: 'Navigation',
@@ -31,7 +32,6 @@ export default defineType({
         },
       ],
     }),
-
     defineField({
       name: 'socialLinks',
       title: 'Social Media Links',
@@ -56,13 +56,6 @@ export default defineType({
       name: 'logo',
       type: 'image',
       group: 'body',
-    }),
-
-    // Seo
-    defineField({
-      name: 'SEO',
-      type: 'seo',
-      group: 'seo',
     }),
   ],
   preview: {

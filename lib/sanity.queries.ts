@@ -1,5 +1,28 @@
 import { groq } from 'next-sanity'
 
+const resolvelinkWithLabel = () => groq`
+  ...select(_type == 'linkWithLabel' => {
+    ...select(defined(internal) => {
+      "type": "internal",
+      "label": internal.label,
+      "slug": coalesce(internal.reference->slug.current, ''),
+    }),
+    ...select(defined(external) => {
+      "type": "external",
+      "label": external.label,
+      "slug": external.url,
+    }),
+  }),
+  ...select(_type == 'linkSocial' => {
+    ...select(defined(network) => {
+        "type": "social",
+        "network": network,
+        "label": network,
+        "slug": url,
+      }),
+  }),
+`
+
 const showcaseProjects = groq`
   showcaseProjects[]->{
     _type,
@@ -40,7 +63,6 @@ const departments = groq`
 export const homePageQuery = groq`
   *[_type == "home"][0]{
     _id, 
-    footer,
     title, 
     ${overview}, 
     ${showcaseProjects}, 
@@ -49,7 +71,6 @@ export const homePageQuery = groq`
 export const aboutPageQuery = groq`
   *[_type == "about"][0]{
     _id, 
-    footer,
     title, 
     ${overview}, 
     ${showcaseProjects}, 
@@ -108,12 +129,18 @@ export const projectBySlugQuery = groq`
 
 export const settingsQuery = groq`
   *[_type == "settings"][0]{
-    footer,
-    menuItems[]->{
-      _type,
-      "slug": slug.current,
-      title
+    navigation[]->{
+      "type": _type,
+      "slug": coalesce(slug.current, ''),
+      "label": title,
     },
-    ogImage,
+    footerLinks[]{
+      ${resolvelinkWithLabel()}
+    },
+    socialLinks[]{
+      ${resolvelinkWithLabel()}
+    },
+    seo,
+    logo,
   }
 `

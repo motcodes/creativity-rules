@@ -6,6 +6,7 @@ export default defineType({
   type: 'document',
   title: 'Stage',
   icon: RobotIcon,
+  liveEdit: true,
   groups: [
     { name: 'body', title: 'Body', default: true },
     { name: 'seo', title: 'SEO' },

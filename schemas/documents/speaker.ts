@@ -6,6 +6,7 @@ export default defineType({
   title: 'Speaker',
   type: 'document',
   icon: IceCreamIcon,
+  liveEdit: true,
   groups: [
     { name: 'talk', title: 'Talk', default: true },
     { name: 'speaker', title: 'Speaker' },

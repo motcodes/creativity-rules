@@ -6,6 +6,7 @@ export default defineType({
   title: 'Venue',
   type: 'document',
   icon: CircleIcon,
+  liveEdit: true,
   groups: [
     { name: 'body', title: 'Body', default: true },
     { name: 'seo', title: 'SEO' },

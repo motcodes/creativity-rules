@@ -12,17 +12,15 @@ export default async function IndexRoute({
   children: React.ReactNode
 }) {
   const token = previewData().token
-  const settings = (await getSettings({ token })) || {
-    menuItems: [],
-    footer: [],
-  }
+  const settings = await getSettings({ token })
+  const { socialLinks, footerLinks, logo, navigation } = settings
 
   return (
     <div className="flex min-h-screen flex-col bg-white text-black">
       {token && <PreviewBanner />}
-      <Navbar menuItems={settings.menuItems} />
+      <Navbar navigation={navigation} />
       <div className="mt-20 flex-grow px-4 md:px-16 lg:px-32">{children}</div>
-      <Footer footer={settings.footer} />
+      <Footer links={footerLinks} socialLinks={socialLinks} logo={logo} />
     </div>
   )
 }
