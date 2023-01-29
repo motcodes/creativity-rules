@@ -4,17 +4,17 @@ import ImageBox from 'components/shared/ImageBox'
 import ScrollUp from 'components/shared/ScrollUp'
 import Link from 'next/link'
 import { Fragment } from 'react'
-import { Block, Image } from 'sanity'
+import { Image, PortableTextBlock } from 'sanity'
 import { SEOProps } from 'types'
 
 export interface ProjectPayload {
   seo: SEOProps
   title?: string
-  overview?: Block[]
+  overview?: PortableTextBlock[]
   coverImage?: Image
   logo?: Image
   slug: string
-  description?: Block[]
+  description?: PortableTextBlock[]
   site?: string
   socialLinks?: Array<{
     _key: string

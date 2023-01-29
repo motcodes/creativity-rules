@@ -1,5 +1,6 @@
 import { CustomPortableText } from 'components/shared/CustomPortableText'
 import { Image } from 'sanity'
+
 import ImageBox from './ImageBox'
 
 interface HeaderProps {

@@ -1,13 +1,6 @@
-import { apiVersion, previewSecretId } from 'lib/sanity.api'
 import { ComponentIcon } from '@sanity/icons'
 import { type StructureResolver } from 'sanity/desk'
-import {
-  pageStructurePages,
-  previewableDocumentTypes,
-  sharedComponentsStructurePages,
-} from 'schemas'
-
-import { PreviewPane } from './previewPane/PreviewPane'
+import { pageStructurePages, sharedComponentsStructurePages } from 'schemas'
 
 export const singletonPlugin = (types: string[]) => {
   return {
@@ -90,23 +83,6 @@ const showSingletonEditor = (arr, S) =>
           .id(typeDef.name)
           .schemaType(typeDef.name)
           .documentId(typeDef.name)
-          .views([
-            // Default form view
-            S.view.form(),
-            // Preview
-            ...(previewableDocumentTypes.includes(typeDef.name)
-              ? [
-                  S.view
-                    .component((props) => (
-                      <PreviewPane
-                        previewSecretId={previewSecretId}
-                        apiVersion={apiVersion}
-                        {...props}
-                      />
-                    ))
-                    .title('Preview'),
-                ]
-              : []),
-          ])
+          .views([S.view.form()])
       )
   )

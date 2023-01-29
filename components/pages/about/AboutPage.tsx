@@ -1,11 +1,13 @@
 import { Header } from 'components/shared/Header'
+import ProjectList from 'components/shared/ProjectList'
 import ScrollUp from 'components/shared/ScrollUp'
 import type { AboutPagePayload } from 'types'
-import ProjectList from 'components/shared/ProjectList'
 
-export function AboutPage({ data }: { data: AboutPagePayload }) {
-  const { overview, showcaseProjects, title } = data
-
+export function AboutPage({
+  overview,
+  showcaseProjects,
+  title,
+}: AboutPagePayload) {
   return (
     <div className="space-y-20">
       {title && <Header centered title={title} description={overview} />}

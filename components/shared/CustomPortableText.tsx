@@ -1,15 +1,15 @@
-import Link from 'next/link'
 import { PortableText, PortableTextComponents } from '@portabletext/react'
-import { Block, Image } from 'sanity'
-import { TimelineSection } from 'components/shared/TimelineSection'
 import ImageBox from 'components/shared/ImageBox'
+import { TimelineSection } from 'components/shared/TimelineSection'
+import Link from 'next/link'
+import { Image, PortableTextBlock } from 'sanity'
 
 export function CustomPortableText({
   paragraphClasses,
   value,
 }: {
   paragraphClasses?: string
-  value: Block[]
+  value: PortableTextBlock[]
 }) {
   const components: PortableTextComponents = {
     block: {
@@ -29,7 +29,6 @@ export function CustomPortableText({
           <Link
             className="underline transition hover:opacity-50"
             href={`/${value?.reference.slug}`}
-            rel="noreferrer noopener"
           >
             {children}
           </Link>
@@ -55,7 +54,7 @@ export function CustomPortableText({
             <ImageBox
               image={value}
               alt={value.alt}
-              classesWrapper="relative aspect-[16/9]"
+              className="relative aspect-[16/9]"
             />
             {value?.alt && (
               <div className="text-sm text-gray-600">{value.alt}</div>
@@ -69,7 +68,7 @@ export function CustomPortableText({
             <ImageBox
               image={value}
               alt={value.alt}
-              classesWrapper="relative aspect-[16/9]"
+              className="relative aspect-[16/9]"
             />
             {value?.alt && (
               <div className="text-sm text-gray-600">{value.alt}</div>

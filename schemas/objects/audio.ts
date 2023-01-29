@@ -4,7 +4,9 @@ export default defineType({
   title: 'Audio',
   name: 'audio',
   type: 'file',
-  accept: 'audio/mp3, audio/ogg, audio/wav',
+  options: {
+    accept: 'audio/mp3, audio/ogg, audio/wav',
+  },
   fields: [
     {
       title: 'Title',
