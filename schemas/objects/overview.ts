@@ -1,5 +1,5 @@
-import { defineType, defineArrayMember } from 'sanity'
 import { LaunchIcon, LinkIcon } from '@sanity/icons'
+import { defineArrayMember, defineType } from 'sanity'
 
 export default defineType({
   title: 'Description',
@@ -9,6 +9,8 @@ export default defineType({
   type: 'array',
   of: [
     defineArrayMember({
+      type: 'block',
+      styles: [],
       lists: [],
       marks: {
         annotations: [
@@ -16,15 +18,13 @@ export default defineType({
             title: 'Internal Link',
             name: 'linkInternal',
             type: 'linkInternal',
-            // @ts-ignore
-            blockEditor: { icon: LinkIcon },
+            icon: LinkIcon,
           },
           {
             title: 'External Link',
             name: 'linkExternal',
             type: 'linkExternal',
-            // @ts-ignore
-            blockEditor: { icon: LaunchIcon },
+            icon: LaunchIcon,
           },
         ],
         decorators: [
@@ -32,8 +32,6 @@ export default defineType({
           { title: 'Strong', value: 'strong' },
         ],
       },
-      styles: [],
-      type: 'block',
     }),
   ],
   validation: (rule) => rule.max(155).required(),

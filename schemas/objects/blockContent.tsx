@@ -1,4 +1,4 @@
-import { ImageIcon, LaunchIcon, LinkIcon } from '@sanity/icons'
+import { LaunchIcon, LinkIcon } from '@sanity/icons'
 import { defineArrayMember, defineField } from 'sanity'
 
 export default defineField({
@@ -9,7 +9,6 @@ export default defineField({
     defineArrayMember({
       title: 'Block',
       type: 'block',
-      // @ts-ignore
       styles: [
         { title: 'Normal', value: 'normal' },
         { title: 'H2', value: 'h2' },
@@ -26,15 +25,13 @@ export default defineField({
             title: 'Internal Link',
             name: 'linkInternal',
             type: 'linkInternal',
-            // @ts-ignore
-            blockEditor: { icon: LinkIcon },
+            icon: LinkIcon,
           },
           {
             title: 'External Link',
             name: 'linkExternal',
             type: 'linkExternal',
-            // @ts-ignore
-            blockEditor: { icon: LaunchIcon },
+            icon: LaunchIcon,
           },
         ],
       },

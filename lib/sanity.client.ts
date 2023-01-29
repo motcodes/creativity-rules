@@ -25,25 +25,19 @@ import { urlForSeoImage } from './sanity.image'
 /**
  * Checks if it's safe to create a client instance, as `@sanity/client` will throw an error if `projectId` is false
  */
-const sanityClient = (token?: string) => {
+const sanityClient = () => {
   return projectId
-    ? createClient({ projectId, dataset, apiVersion, useCdn, token })
+    ? createClient({ projectId, dataset, apiVersion, useCdn })
     : null
 }
 
-interface TokenProps {
-  token?: string
-}
-
-interface TokenSlugProps {
-  token?: string
+interface SlugProps {
   slug?: string
 }
 
 interface GetPageSeoProps {
   page?: string
   slug?: string
-  token?: string
 }
 
 const BASE_TITLE = 'Creativity Rules 2023'
@@ -51,7 +45,6 @@ const BASE_TITLE = 'Creativity Rules 2023'
 export async function getPageSeo({
   page = 'settings',
   slug,
-  token,
 }: GetPageSeoProps): Promise<{
   title: string
   description: string
@@ -59,8 +52,8 @@ export async function getPageSeo({
 }> {
   const fetcher = slug ? seoPageBySlugQuery(page) : seoPageQuery(page)
   const [defaultSeo, pageSeo] = await Promise.all([
-    sanityClient(token)?.fetch(seoPageQuery('settings')),
-    sanityClient(token)?.fetch(fetcher, slug ? { slug } : {}),
+    sanityClient()?.fetch(seoPageQuery('settings')),
+    sanityClient()?.fetch(fetcher, slug ? { slug } : {}),
   ])
   const _seo = { ...defaultSeo, ...pageSeo }
   const title = `${_seo.title ? `${_seo.title} | ` : ''}${BASE_TITLE}`
@@ -73,40 +66,28 @@ export async function getPageSeo({
   }
 }
 
-export async function getHomePage({
-  token,
-}: TokenProps): Promise<HomePagePayload> {
-  return await sanityClient(token)?.fetch(homePageQuery)
+export async function getHomePage(): Promise<HomePagePayload> {
+  return await sanityClient()?.fetch(homePageQuery)
 }
 
-export async function getAboutPage({
-  token,
-}: TokenProps): Promise<AboutPagePayload> {
-  return await sanityClient(token)?.fetch(aboutPageQuery)
+export async function getAboutPage(): Promise<AboutPagePayload> {
+  return await sanityClient()?.fetch(aboutPageQuery)
 }
 
-export async function getStagePage({
-  token,
-}: TokenProps): Promise<AboutPagePayload> {
-  return await sanityClient(token)?.fetch(stagePageQuery)
+export async function getStagePage(): Promise<AboutPagePayload> {
+  return await sanityClient()?.fetch(stagePageQuery)
 }
 
-export async function getPageBySlug({
-  slug,
-  token,
-}: TokenSlugProps): Promise<PagePayload> {
-  return await sanityClient(token)?.fetch(pagesBySlugQuery, { slug })
+export async function getPageBySlug({ slug }: SlugProps): Promise<PagePayload> {
+  return await sanityClient()?.fetch(pagesBySlugQuery, { slug })
 }
 
 export async function getProjectBySlug({
   slug,
-  token,
-}: TokenSlugProps): Promise<ProjectPayload> {
-  return await sanityClient(token)?.fetch(projectBySlugQuery, { slug })
+}: SlugProps): Promise<ProjectPayload> {
+  return await sanityClient()?.fetch(projectBySlugQuery, { slug })
 }
 
-export async function getSettings({
-  token,
-}: TokenProps): Promise<SettingsPayload> {
-  return await sanityClient(token)?.fetch(settingsQuery)
+export async function getSettings(): Promise<SettingsPayload> {
+  return await sanityClient()?.fetch(settingsQuery)
 }
