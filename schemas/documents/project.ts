@@ -1,5 +1,5 @@
 import { PresentationIcon } from '@sanity/icons'
-import { BAMA, MAIN_DEPARMENT, COURSE_OF_STUDIES } from 'types/constants'
+import { BAMA } from 'types/constants'
 import { defineArrayMember, defineField, defineType } from 'sanity'
 
 export default defineType({

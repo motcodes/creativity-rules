@@ -11,7 +11,6 @@ import { notFound } from 'next/navigation'
 export default async function StageRoute() {
   const token = previewData().token || null
   const data = await getStagePage({ token })
-  console.log('data :', data)
 
   if (!data && !token) {
     notFound()

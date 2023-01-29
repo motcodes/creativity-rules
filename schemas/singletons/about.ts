@@ -6,7 +6,6 @@ export default defineType({
   title: 'About',
   type: 'document',
   icon: UserIcon,
-  liveEdit: true,
   groups: [
     { name: 'body', title: 'Body', default: true },
     { name: 'seo', title: 'SEO' },

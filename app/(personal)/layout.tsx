@@ -5,11 +5,12 @@ import { Navbar } from 'components/global/Navbar'
 import { PreviewBanner } from 'components/preview/PreviewBanner'
 import { getSettings } from 'lib/sanity.client'
 import { previewData } from 'next/headers'
+import { ReactNode } from 'react'
 
 export default async function IndexRoute({
   children,
 }: {
-  children: React.ReactNode
+  children: ReactNode
 }) {
   const token = previewData().token
   const settings = await getSettings({ token })

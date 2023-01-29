@@ -8,11 +8,7 @@ import { notFound } from 'next/navigation'
 
 export default async function IndexRoute() {
   const token = previewData().token || null
-  const data = (await getHomePage({ token })) || {
-    title: '',
-    overview: [],
-    showcaseProjects: [],
-  }
+  const data = await getHomePage({ token })
 
   if (!data && !token) {
     notFound()

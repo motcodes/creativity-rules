@@ -1,11 +1,11 @@
 import 'server-only'
-
 import { apiVersion, dataset, projectId, useCdn } from 'lib/sanity.api'
 import {
   aboutPageQuery,
   homePageQuery,
   pagesBySlugQuery,
   projectBySlugQuery,
+  seoPageBySlugQuery,
   seoPageQuery,
   settingsQuery,
   stagePageQuery,
@@ -18,7 +18,7 @@ import type {
   SettingsPayload,
 } from 'types'
 import { ProjectPayload } from 'components/pages/project/ProjectPage'
-import { Block, Image } from 'sanity'
+import { urlForSeoImage } from './sanity.image'
 
 /**
  * Checks if it's safe to create a client instance, as `@sanity/client` will throw an error if `projectId` is false
@@ -29,85 +29,82 @@ const sanityClient = (token?: string) => {
     : null
 }
 
-interface GetPageSeoProps {
-  page: string
+interface TokenProps {
   token?: string
 }
 
-export async function getPageSeo({ page, token }: GetPageSeoProps): Promise<{
+interface TokenSlugProps {
+  token?: string
+  slug?: string
+}
+
+interface GetPageSeoProps {
+  page?: string
+  slug?: string
+  token?: string
+}
+
+const BASE_TITLE = 'Creativity Rules 2023'
+
+export async function getPageSeo({
+  page = 'settings',
+  slug,
+  token,
+}: GetPageSeoProps): Promise<{
   title: string
-  description: Block[]
-  ogImage: Image
+  description: string
+  ogImage: string
 }> {
-  return await sanityClient(token)?.fetch(seoPageQuery(page))
+  const fetcher = slug ? seoPageBySlugQuery(page) : seoPageQuery(page)
+  const [defaultSeo, pageSeo] = await Promise.all([
+    sanityClient(token)?.fetch(seoPageQuery('settings')),
+    sanityClient(token)?.fetch(fetcher, slug ? { slug } : {}),
+  ])
+  const _seo = { ...defaultSeo, ...pageSeo }
+  const title = `${_seo.title ? `${_seo.title} | ` : ''}${BASE_TITLE}`
+  const ogImage = _seo.ogImage && urlForSeoImage(_seo.ogImage)
+
+  return {
+    title,
+    description: _seo.description,
+    ogImage,
+  }
 }
 
 export async function getHomePage({
   token,
-}: {
-  token?: string
-}): Promise<HomePagePayload | undefined> {
-  return (
-    (await sanityClient(token)?.fetch(homePageQuery)) || {
-      title: '',
-      overview: [],
-      showcaseProjects: [],
-    }
-  )
+}: TokenProps): Promise<HomePagePayload> {
+  return await sanityClient(token)?.fetch(homePageQuery)
 }
 
 export async function getAboutPage({
   token,
-}: {
-  token?: string
-}): Promise<AboutPagePayload | undefined> {
-  return (
-    (await sanityClient(token)?.fetch(aboutPageQuery)) || {
-      title: '',
-      overview: [],
-      showcaseProjects: [],
-    }
-  )
+}: TokenProps): Promise<AboutPagePayload> {
+  return await sanityClient(token)?.fetch(aboutPageQuery)
 }
 
 export async function getStagePage({
   token,
-}: {
-  token?: string
-}): Promise<AboutPagePayload | undefined> {
-  return (
-    (await sanityClient(token)?.fetch(stagePageQuery)) || {
-      title: '',
-      overview: [],
-      showcaseProjects: [],
-    }
-  )
+}: TokenProps): Promise<AboutPagePayload> {
+  return await sanityClient(token)?.fetch(stagePageQuery)
 }
 
 export async function getPageBySlug({
   slug,
   token,
-}: {
-  slug: string
-  token?: string
-}): Promise<PagePayload | undefined> {
+}: TokenSlugProps): Promise<PagePayload> {
   return await sanityClient(token)?.fetch(pagesBySlugQuery, { slug })
 }
 
 export async function getProjectBySlug({
   slug,
   token,
-}: {
-  slug: string
-  token?: string
-}): Promise<ProjectPayload | undefined> {
+}: TokenSlugProps): Promise<ProjectPayload> {
   return await sanityClient(token)?.fetch(projectBySlugQuery, { slug })
 }
 
 export async function getSettings({
   token,
-}: {
-  token?: string
-}): Promise<SettingsPayload | undefined> {
+}: TokenProps): Promise<SettingsPayload> {
   return await sanityClient(token)?.fetch(settingsQuery)
 }

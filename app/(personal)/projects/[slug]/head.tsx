@@ -9,14 +9,11 @@ export default async function ProjectPageHead({
   params: { slug: string }
 }) {
   const token = previewData().token
-  const data = await getProjectBySlug({ slug: params.slug, token })
-  const { title, description, ogImage } = data.seo
+  const data = await getPageSeo({
+    token,
+    page: 'project',
+    slug: params.slug,
+  })
 
-  return (
-    <SiteMeta
-      description={description ? toPlainText(description) : ''}
-      image={ogImage}
-      title={title}
-    />
-  )
+  return <SiteMeta {...data} />
 }

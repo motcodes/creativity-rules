@@ -9,7 +9,6 @@ import { notFound } from 'next/navigation'
 export default async function AboutRoute() {
   const token = previewData().token || null
   const data = await getAboutPage({ token })
-  console.log('data :', data)
 
   if (!data && !token) {
     notFound()

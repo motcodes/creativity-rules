@@ -1,3 +1,4 @@
+import { AutoLink } from 'components/shared/AutoLink'
 import { partition } from 'lib/partition'
 import Link from 'next/link'
 import { Image } from 'sanity'
@@ -9,7 +10,6 @@ export interface FooterProps {
   socialLinks: Array<LinkItem>
 }
 
-const linkClass = `hover:underline`
 export function Footer({ links, logo, socialLinks }: FooterProps) {
   const [linksLeft, linksRight] = partition(links, 2)
   return (
@@ -19,9 +19,7 @@ export function Footer({ links, logo, socialLinks }: FooterProps) {
           <ul>
             {linksLeft.map((item: LinkItem) => (
               <li key={item.label}>
-                <Link href={item.slug} className="hover:underline">
-                  {item.label}
-                </Link>
+                <AutoLink {...item}>{item.label}</AutoLink>
               </li>
             ))}
           </ul>
@@ -30,9 +28,7 @@ export function Footer({ links, logo, socialLinks }: FooterProps) {
           <ul>
             {linksRight.map((item: LinkItem) => (
               <li key={item.label}>
-                <Link href={item.slug} className="hover:underline">
-                  {item.label}
-                </Link>
+                <AutoLink {...item}>{item.label}</AutoLink>
               </li>
             ))}
           </ul>

@@ -6,17 +6,30 @@ export default defineType({
   name: 'page',
   title: 'Page',
   icon: DashboardIcon,
+  groups: [
+    { name: 'body', title: 'Body', default: true },
+    { name: 'seo', title: 'SEO' },
+  ],
   fields: [
+    defineField({
+      name: 'seo',
+      type: 'seo',
+      title: 'SEO',
+      group: 'seo',
+      validation: (rule) => rule.required(),
+    }),
     defineField({
       type: 'string',
       name: 'title',
       title: 'Title',
+      group: 'body',
       validation: (rule) => rule.required(),
     }),
     defineField({
       type: 'slug',
       name: 'slug',
       title: 'Slug',
+      group: 'body',
       options: {
         source: 'title',
       },
@@ -25,11 +38,13 @@ export default defineType({
     defineField({
       name: 'overview',
       type: 'overview',
+      group: 'body',
     }),
     defineField({
       type: 'blockContent',
       name: 'body',
       title: 'Body',
+      group: 'body',
       description: `This is where you can write the page's content. Including custom blocks like timelines for more a more visual display of information.`,
     }),
   ],

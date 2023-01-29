@@ -63,12 +63,12 @@ export default defineType({
   ],
   preview: {
     select: {
-      name: 'name',
+      title: 'title',
       schedule: 'schedule',
     },
-    prepare: ({ name = '', schedule = [] }) => {
+    prepare: ({ title = '', schedule = [] }) => {
       return {
-        title: name,
+        title,
         subtitle: `${schedule.length} talk${schedule.length !== 1 ? 's' : ''}`,
       }
     },

@@ -102,6 +102,7 @@ const linkInternal = {
         { type: 'home' },
         { type: 'project' },
         { type: 'about' },
+        { type: 'stage' },
       ],
       validation: (Rule) => Rule.required(),
     },
@@ -111,7 +112,6 @@ const linkInternal = {
       title: 'url',
     },
     prepare: ({ title }) => {
-      console.log('title :', title)
       return { title }
     },
   },

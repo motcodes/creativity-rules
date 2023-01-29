@@ -1,21 +1,18 @@
-import { toPlainText } from '@portabletext/react'
+import { previewData } from 'next/headers'
 import { SiteMeta } from 'components/global/SiteMeta'
 import { getPageSeo } from 'lib/sanity.client'
-import { previewData } from 'next/headers'
 
-export default async function PageHead() {
+export default async function PageHead({
+  params,
+}: {
+  params: { slug: string }
+}) {
   const token = previewData().token
-
-  const { title, description, ogImage } = await getPageSeo({
+  const data = await getPageSeo({
     token,
-    page: 'home',
+    page: 'page',
+    slug: params.slug,
   })
 
-  return (
-    <SiteMeta
-      description={description ? toPlainText(description) : ''}
-      image={ogImage}
-      title={title}
-    />
-  )
+  return <SiteMeta {...data} />
 }

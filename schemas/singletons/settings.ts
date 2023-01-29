@@ -28,7 +28,12 @@ export default defineType({
       of: [
         {
           type: 'reference',
-          to: [{ type: 'page' }, { type: 'home' }, { type: 'about' }],
+          to: [
+            { type: 'page' },
+            { type: 'home' },
+            { type: 'about' },
+            { type: 'stage' },
+          ],
         },
       ],
     }),

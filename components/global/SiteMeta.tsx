@@ -1,24 +1,13 @@
-import { urlForSeoImage } from 'lib/sanity.image'
-import type { Image } from 'sanity'
-
-const BASE_TITLE = 'Creativity Rules 2023'
-export function SiteMeta({
-  description,
-  image,
-  title,
-}: {
-  description?: string
-  image?: Image
+export interface SiteMetaProps {
   title?: string
-}) {
-  const _title = title ? `${title} | ` : ''
-  const metaTitle = `${_title}${BASE_TITLE}`
+  description?: string
+  image?: string
+}
 
-  const imageUrl = image && urlForSeoImage(image)
-
+export function SiteMeta({ title, description, image }: SiteMetaProps) {
   return (
     <>
-      <title>{metaTitle}</title>
+      <title>{title}</title>
       <meta name="viewport" content="width=device-width,initial-scale=1.0" />
       <link
         rel="apple-touch-icon"
@@ -45,7 +34,7 @@ export function SiteMeta({
       {description && (
         <meta key="description" name="description" content={description} />
       )}
-      {imageUrl && <meta property="og:image" content={imageUrl} />}
+      {image && <meta property="og:image" content={image} />}
     </>
   )
 }
