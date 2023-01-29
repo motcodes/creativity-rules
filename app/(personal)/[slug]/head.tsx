@@ -1,13 +1,13 @@
-import { previewData } from 'next/headers'
 import { SiteMeta } from 'components/global/SiteMeta'
 import { getPageSeo } from 'lib/sanity.client'
+import { previewData } from 'next/headers'
 
 export default async function PageHead({
   params,
 }: {
   params: { slug: string }
 }) {
-  const token = previewData().token
+  const { token } = previewData()
   const data = await getPageSeo({
     token,
     page: 'page',

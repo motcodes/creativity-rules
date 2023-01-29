@@ -1,4 +1,4 @@
-import type { Block, Image } from 'sanity'
+import type { Image, PortableTextBlock } from 'sanity'
 
 export interface LinkItem {
   slug: string
@@ -21,7 +21,7 @@ export interface MilestoneItem {
 export interface ShowcaseProject {
   _type: string
   coverImage?: Image
-  overview?: Block[]
+  overview?: PortableTextBlock[]
   slug?: string
   tags?: string[]
   title?: string
@@ -30,23 +30,23 @@ export interface ShowcaseProject {
 // Page payloads
 
 export interface HomePagePayload {
-  footer?: Block[]
-  overview?: Block[]
+  footer?: PortableTextBlock[]
+  overview?: PortableTextBlock[]
   showcaseProjects?: ShowcaseProject[]
   title?: string
 }
 
 export interface AboutPagePayload {
-  footer?: Block[]
-  overview?: Block[]
+  footer?: PortableTextBlock[]
+  overview?: PortableTextBlock[]
   showcaseProjects?: ShowcaseProject[]
   title?: string
 }
 
 export interface PagePayload {
-  body?: Block[]
+  body?: PortableTextBlock[]
   name?: string
-  overview?: Block[]
+  overview?: PortableTextBlock[]
   title?: string
 }
 export interface StagePayload {
@@ -65,6 +65,6 @@ export interface SettingsPayload {
 
 export interface SEOProps {
   title: string
-  description: Block[]
+  description: PortableTextBlock[]
   ogImage: Image
 }
