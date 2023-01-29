@@ -1,7 +1,7 @@
 'use client'
 import { urlForImage } from 'lib/sanity.image'
-import Image, { ImageLoaderProps } from 'next/image'
 import type { ImageProps } from 'next/image'
+import Image, { ImageLoaderProps } from 'next/image'
 import { useRef, useState } from 'react'
 
 const emptyImage =

@@ -17,5 +17,5 @@ export function PagePreview({
     slug: slug,
   })
 
-  return <Page data={about} />
+  return <Page {...about} />
 }

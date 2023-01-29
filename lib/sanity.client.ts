@@ -1,4 +1,6 @@
 import 'server-only'
+
+import { ProjectPayload } from 'components/pages/project/ProjectPage'
 import { apiVersion, dataset, projectId, useCdn } from 'lib/sanity.api'
 import {
   aboutPageQuery,
@@ -17,7 +19,7 @@ import type {
   PagePayload,
   SettingsPayload,
 } from 'types'
-import { ProjectPayload } from 'components/pages/project/ProjectPage'
+
 import { urlForSeoImage } from './sanity.image'
 
 /**
