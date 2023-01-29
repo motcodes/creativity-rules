@@ -9,7 +9,7 @@ import { previewData } from 'next/headers'
 import { notFound } from 'next/navigation'
 
 export default async function StageRoute() {
-  const token = previewData().token || null
+  const token = previewData()?.token || null
   const data = await getStagePage({ token })
 
   if (!data && !token) {

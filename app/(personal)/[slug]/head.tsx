@@ -7,7 +7,7 @@ export default async function PageHead({
 }: {
   params: { slug: string }
 }) {
-  const { token } = previewData()
+  const token = previewData()?.token || null
   const data = await getPageSeo({
     token,
     page: 'page',

@@ -8,7 +8,7 @@ export default async function ProjectPageHead({
 }: {
   params: { slug: string }
 }) {
-  const token = previewData().token
+  const token = previewData()?.token || null
   const data = await getPageSeo({
     token,
     page: 'project',

@@ -2,9 +2,15 @@ import { PortableText, PortableTextComponents } from '@portabletext/react'
 import ImageBox from 'components/shared/ImageBox'
 import { TimelineSection } from 'components/shared/TimelineSection'
 import Link from 'next/link'
-import { BlockProps, Image } from 'sanity'
+import { Image, PortableTextBlock } from 'sanity'
 
-export function CustomPortableText({ paragraphClasses = '', value }) {
+export function CustomPortableText({
+  paragraphClasses,
+  value,
+}: {
+  paragraphClasses?: string
+  value: PortableTextBlock[]
+}) {
   const components: PortableTextComponents = {
     block: {
       normal: ({ children }) => {
