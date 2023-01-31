@@ -2,6 +2,9 @@ image: alpine:latest
 
 pages:
   stage: deploy
+  before_script:
+    - curl -f https://get.pnpm.io/v6.16.js | node - add --global pnpm@7
+    - pnpm config set store-dir .pnpm-store
   script:
     - pnpm install
     - pnpm build
@@ -12,8 +15,12 @@ pages:
     paths:
       - public
   cache:
+  key:
+    files:
+      - pnpm-lock.yaml
     paths:
       - node_modules
       - .next/cache/
+      - .pnpm-store
   only:
     - main
