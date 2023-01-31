@@ -59,8 +59,15 @@ export default defineType({
       validation: (rule) => rule.required(),
     }),
     defineField({
-      name: 'timeframe',
-      title: 'timeframe',
+      name: 'startTime',
+      title: 'Talk Start Time',
+      type: 'string',
+      group: 'talk',
+      validation: (rule) => rule.required(),
+    }),
+    defineField({
+      name: 'endTime',
+      title: 'Talk End Time',
       type: 'string',
       group: 'talk',
       validation: (rule) => rule.required(),
@@ -69,6 +76,13 @@ export default defineType({
       name: 'topic',
       title: 'Topic',
       type: 'string',
+      group: 'talk',
+    }),
+    defineField({
+      name: 'project',
+      title: 'Project (Optional)',
+      type: 'reference',
+      to: [{ type: 'project' }],
       group: 'talk',
     }),
 
