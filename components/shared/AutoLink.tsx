@@ -16,7 +16,7 @@ export const AutoLink = ({ slug, type, label, children }) => {
   } else {
     return (
       <Link
-        className="hover:underline"
+        className="capitalize hover:underline"
         href={slug}
         target="_blank"
         rel="noopener"

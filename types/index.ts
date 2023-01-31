@@ -31,9 +31,11 @@ export interface ShowcaseProject {
 
 export interface HomePagePayload {
   footer?: PortableTextBlock[]
-  overview?: PortableTextBlock[]
-  showcaseProjects?: ShowcaseProject[]
-  title?: string
+  overview: PortableTextBlock[]
+  title: string
+  date: string
+  links: LinkItem[]
+  socialLinks: LinkItem[]
 }
 
 export interface AboutPagePayload {
