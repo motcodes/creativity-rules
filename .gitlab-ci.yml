@@ -2,6 +2,7 @@ image: alpine:latest
 
 pages:
   stage: deploy
+  image: node:16.14.0-alpine
   script:
     - npm install
     - npm build
