@@ -5,8 +5,8 @@ pages:
   image: node:16.14.0-alpine
   script:
     - npm install
-    - npm build
-    - npm export
+    - npm run build
+    - npm run export
     - rm -rf public/*
     - mv out/* public
   artifacts:
