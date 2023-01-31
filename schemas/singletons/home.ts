@@ -20,17 +20,22 @@ export default defineType({
       type: 'overview',
     }),
     defineField({
-      name: 'showcaseProjects',
-      title: 'Showcase projects',
-      description:
-        'These are the projects that will appear first on your landing page.',
+      name: 'date',
+      description: 'temp',
+      type: 'string',
+      validation: (rule) => rule.required(),
+    }),
+    defineField({
+      name: 'socialLinks',
+      description: 'temp',
       type: 'array',
-      of: [
-        defineArrayMember({
-          type: 'reference',
-          to: [{ type: 'project' }],
-        }),
-      ],
+      of: [{ type: 'linkSocial' }],
+    }),
+    defineField({
+      name: 'links',
+      description: 'temp',
+      type: 'array',
+      of: [{ type: 'linkWithLabel' }],
     }),
   ],
   preview: {
