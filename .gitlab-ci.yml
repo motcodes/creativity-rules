@@ -15,9 +15,9 @@ pages:
     paths:
       - public
   cache:
-  key:
-    files:
-      - pnpm-lock.yaml
+    key:
+      files:
+        - pnpm-lock.yaml
     paths:
       - node_modules
       - .next/cache/
