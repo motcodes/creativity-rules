@@ -3,9 +3,17 @@ image: alpine:latest
 pages:
   stage: deploy
   script:
-  - echo 'Nothing to do... static html already in public/*'
+    - pnpm install
+    - pnpm build
+    - pnpm export
+    - rm -rf public/*
+    - mv out/* public
   artifacts:
     paths:
-    - public
+      - public
+  cache:
+    paths:
+      - node_modules
+      - .next/cache/
   only:
-  - main
+    - main

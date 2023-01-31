@@ -13,6 +13,9 @@ const config = {
       { hostname: 'source.unsplash.com' },
     ],
   },
+  assetPrefix:
+    process.env.NODE_ENV === 'production' ? '/creativity_rules_2023' : '',
+
   typescript: {
     // Set this to false if you want production builds to abort if there's type errors
     ignoreBuildErrors: process.env.VERCEL_ENV === 'production',
