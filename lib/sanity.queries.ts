@@ -64,8 +64,14 @@ export const homePageQuery = groq`
   *[_type == "home"][0]{
     _id, 
     title, 
-    ${overview}, 
-    ${showcaseProjects}, 
+    ${overview},
+    date,
+    socialLinks[]{
+      ${resolvelinkWithLabel()}
+    }, 
+    links[]{
+      ${resolvelinkWithLabel()}
+    },
   }
 `
 export const aboutPageQuery = groq`

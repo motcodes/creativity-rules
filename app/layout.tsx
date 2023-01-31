@@ -1,20 +1,14 @@
 import 'tailwindcss/tailwind.css'
 
-import { Inter } from '@next/font/google'
 import { ReactNode } from 'react'
 
-const sans = Inter({
-  variable: '--font-sans',
-  subsets: ['latin'],
-})
-
-export default async function RootLayout({
-  children,
-}: {
+export interface RootLayoutProps {
   children: ReactNode
-}) {
+}
+
+export default async function RootLayout({ children }: RootLayoutProps) {
   return (
-    <html lang="en" className={`${sans.variable}`}>
+    <html lang="en" className="font-sans">
       <body>{children}</body>
     </html>
   )
