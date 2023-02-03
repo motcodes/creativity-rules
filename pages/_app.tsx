@@ -1,13 +1,13 @@
 import 'tailwindcss/tailwind.css'
+import 'styles/index.css'
 
-import { getSettings } from 'lib/sanity.client'
 import type { AppProps } from 'next/app'
 
 export default function MyApp({ Component, pageProps }: AppProps) {
   return <Component {...pageProps} />
 }
 
-// MyApp.getInitialProps = async (context) => {
+// MyApp.getInitialProps = async () => {
 //   let settings = {}
 
 //   try {
