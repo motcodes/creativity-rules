@@ -1,15 +1,28 @@
-image: alpine:latest
-
 stages:
   - deploy
+
+variables:
+  APP_NAME: cr2023
 
 deploy:
   image: ilyasemenov/gitlab-ci-git-push
   stage: deploy
   only:
-    - main
+    - master
   script:
-    - git-push ssh://dokku@projects.multimediatechnology.at:5412/cr2023 main:master
+    - git-push ssh://dokku@projects.multimediatechnology.at:5412/$APP_NAME
+# image: alpine:latest
+
+# stages:
+#   - deploy
+
+# deploy:
+#   image: ilyasemenov/gitlab-ci-git-push
+#   stage: deploy
+#   only:
+#     - main
+#   script:
+#     - git-push ssh://dokku@projects.multimediatechnology.at:5412/cr2023 main:master
 # pages:
 #   stage: deploy
 #   image: node:16.14.0-alpine
