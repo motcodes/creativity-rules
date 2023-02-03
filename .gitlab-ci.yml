@@ -7,6 +7,9 @@ variables:
 deploy:
   image: ilyasemenov/gitlab-ci-git-push
   stage: deploy
+  environment:
+    name: production
+    url: https://cr2023.projects.multimediatechnology.at/
   only:
     - master
   script:
