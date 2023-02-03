@@ -1,20 +1,42 @@
 image: alpine:latest
 
-pages:
+stages:
+  - deploy
+
+deploy:
+  image: ilyasemenov/gitlab-ci-git-push
   stage: deploy
-  image: node:16.14.0-alpine
-  script:
-    - npm install
-    - npm run build
-    - npm run export
-    - rm -rf public/*
-    - mv out/* public
-  artifacts:
-    paths:
-      - public
-  cache:
-    paths:
-      - node_modules
-      - .next/cache/
   only:
     - main
+  script:
+    - git-push ssh://dokku@projects.multimediatechnology.at:5412/cr2023 main:master
+# pages:
+#   stage: deploy
+#   image: node:16.14.0-alpine
+#   script:
+#     - git config user.email "moberholzer.mmt-b2020@fh-salzburg.ac.at"
+#     - git config user.name "ci-bot"
+#     - git remote add dokku https://projects.multimediatechnology.at:5412/cr2023
+#     - git add .
+#     - git commit -m "push back from pipeline"
+#     - git push gitlab_origin HEAD:main -o ci.skip # prevent triggering pipeline again
+#   only:
+#     - main
+# pages:
+#   stage: deploy
+#   image: node:16.14.0-alpine
+#   script:
+#     - npm install
+#     - npm run build
+#     - npm run export
+#     - rm -rf public/*
+#     - mv out/* public
+#   artifacts:
+#     paths:
+#       - public
+#   cache:
+#     paths:
+#       - node_modules
+#       - .next/cache/
+#   only:
+#     - main
