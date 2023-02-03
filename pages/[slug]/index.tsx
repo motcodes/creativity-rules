@@ -22,7 +22,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
 
   return {
     paths: data.map((item) => ({ params: { slug: item.slug } })),
-    fallback: false,
+    fallback: 'blocking',
   }
 }
 

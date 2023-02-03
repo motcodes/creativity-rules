@@ -18,10 +18,12 @@ export default function IndexRoute({ data, head }) {
 }
 
 export const getStaticProps: GetStaticProps = async () => {
-  const data = await getHomePage()
-  const head = await getPageSeo({
-    page: 'home',
-  })
+  const [data, head] = await Promise.all([
+    getHomePage(),
+    getPageSeo({
+      page: 'home',
+    }),
+  ])
 
   return {
     props: {

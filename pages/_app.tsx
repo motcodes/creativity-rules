@@ -7,14 +7,14 @@ export default function MyApp({ Component, pageProps }: AppProps) {
   return <Component {...pageProps} />
 }
 
-MyApp.getInitialProps = async (context) => {
-  let settings = {}
+// MyApp.getInitialProps = async (context) => {
+//   let settings = {}
 
-  try {
-    settings = await getSettings()
-  } catch (error) {
-    return { error }
-  }
+//   try {
+//     settings = await getSettings()
+//   } catch (error) {
+//     return { error }
+//   }
 
-  return { settings }
-}
+//   return { settings }
+// }
