@@ -1,19 +1,50 @@
+# pages:
+#   stage: deploy
+#   image: node:16.14.0-alpine
+#   script:
+#     - git config user.email "moberholzer.mmt-b2020@fh-salzburg.ac.at"
+#     - git config user.name "ci-bot"
+#     - git remote add dokku ssh://dokku@projects.multimediatechnology.at:5412/cr2023
+#     - dokku ps:rebuild
+#   only:
+#     - main
+image: dokku/ci-docker-image
+
 stages:
   - deploy
 
 variables:
-  APP_NAME: cr2023
+  GIT_DEPTH: 0
 
 deploy:
-  image: ilyasemenov/gitlab-ci-git-push
   stage: deploy
+  only:
+    - master
   environment:
     name: production
     url: https://cr2023.projects.multimediatechnology.at/
-  only:
-    - master
-  script:
-    - git-push ssh://dokku@projects.multimediatechnology.at:5412/cr2023
+  variables:
+    GIT_REMOTE_URL: ssh://dokku@projects.multimediatechnology.at:5412/cr2023
+  script: 
+    - dokku-deploy
+  after_script: 
+    - dokku-unlock
+# stages:
+#   - deploy
+
+# variables:
+#   APP_NAME: cr2023
+
+# deploy:
+#   image: ilyasemenov/gitlab-ci-git-push
+#   stage: deploy
+#   environment:
+#     name: production
+#     url: https://cr2023.projects.multimediatechnology.at/
+#   only:
+#     - master
+#   script:
+#     - git-push ssh://dokku@projects.multimediatechnology.at:5412/cr2023
 # image: alpine:latest
 
 # stages:
