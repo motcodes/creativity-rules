@@ -6,7 +6,7 @@
     "format": "npx prettier --write . --ignore-path .gitignore",
     "lint": "next lint -- --ignore-path .gitignore",
     "lint:fix": "npm run format && npm run lint -- --fix",
-    "start": "next start",
+    "start": "next start -p 5000",
     "type-check": "tsc --noEmit",
     "export": "next export"
   },
