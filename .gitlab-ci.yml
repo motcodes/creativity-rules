@@ -26,7 +26,7 @@ deploy:
   variables:
     GIT_REMOTE_URL: ssh://dokku@projects.multimediatechnology.at:5412/cr2023
   script: 
-    - COMMAND="ps:rebuild" dokku-deploy
+    - dokku-deploy
   after_script: 
     - dokku-unlock
 # stages:
