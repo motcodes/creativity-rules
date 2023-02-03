@@ -41,3 +41,5 @@ yarn-error.log*
 .env
 studio/.env.development
 .gitconfig
+.DS_Store
+Rakefile
