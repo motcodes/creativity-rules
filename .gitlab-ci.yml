@@ -10,7 +10,7 @@ deploy:
   only:
     - master
   script:
-    - git-push ssh://dokku@projects.multimediatechnology.at:5412/$APP_NAME
+    - git-push ssh://dokku@projects.multimediatechnology.at:5412/cr2023
 # image: alpine:latest
 
 # stages:
