@@ -126,6 +126,17 @@ export const projectBySlugQuery = groq`
     ${departments}
   }
 `
+export const talkBySlugQuery = groq`
+  *[_type == "speaker" && slug.current == $slug][0] {
+    ...
+  }
+`
+
+export const pathsByType = (type: string) => groq`
+ *[_type == "${type}"] {
+    "slug": slug.current,
+  }
+`
 
 export const settingsQuery = groq`
   *[_type == "settings"][0]{

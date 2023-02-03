@@ -1,16 +1,16 @@
-import 'server-only'
-
 import { ProjectPayload } from 'components/pages/project/ProjectPage'
 import { apiVersion, dataset, projectId, useCdn } from 'lib/sanity.api'
 import {
   aboutPageQuery,
   homePageQuery,
   pagesBySlugQuery,
+  pathsByType,
   projectBySlugQuery,
   seoPageBySlugQuery,
   seoPageQuery,
   settingsQuery,
   stagePageQuery,
+  talkBySlugQuery,
 } from 'lib/sanity.queries'
 import { createClient } from 'next-sanity'
 import type {
@@ -86,6 +86,17 @@ export async function getProjectBySlug({
   slug,
 }: SlugProps): Promise<ProjectPayload> {
   return await sanityClient()?.fetch(projectBySlugQuery, { slug })
+}
+export async function getTalkBySlug({
+  slug,
+}: SlugProps): Promise<ProjectPayload> {
+  return await sanityClient()?.fetch(talkBySlugQuery, { slug })
+}
+
+export async function getPathsByType(
+  type: string
+): Promise<Array<{ slug: string }>> {
+  return await sanityClient()?.fetch(pathsByType(type))
 }
 
 export async function getSettings(): Promise<SettingsPayload> {
