@@ -60,9 +60,10 @@ export interface PagePayload {
 }
 export interface StagePayload {
   seo?: SEOProps
-  title?: string
-  stream?: string
-  schedule?: Array<unknown>
+  title: string
+  stream: string
+  schedule: TalkSpeakerPayload[]
+  slug: { current: string }
 }
 
 export interface SettingsPayload {

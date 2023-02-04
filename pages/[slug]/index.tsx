@@ -1,4 +1,4 @@
-import { SiteMeta } from 'components/global/SiteMeta'
+import { SiteMeta, SiteMetaProps } from 'components/global/SiteMeta'
 import { Page } from 'components/pages/page/Page'
 import {
   getPageBySlug,
@@ -8,8 +8,14 @@ import {
 } from 'lib/sanity.client'
 import { GetStaticPaths, GetStaticProps } from 'next'
 import Head from 'next/head'
+import { PagePayload } from 'types'
 
-export default function SlugRoute({ data, head }) {
+export interface PageProps {
+  data: PagePayload
+  head: SiteMetaProps
+}
+
+export default function SlugRoute({ data, head }: PageProps) {
   return (
     <>
       <Head>

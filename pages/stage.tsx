@@ -1,9 +1,15 @@
-import { SiteMeta } from 'components/global/SiteMeta'
+import { SiteMeta, SiteMetaProps } from 'components/global/SiteMeta'
 import { StagePage } from 'components/pages/stage/StagePage'
 import { getPageSeo, getSettings, getStagePage } from 'lib/sanity.client'
 import Head from 'next/head'
+import { StagePayload } from 'types'
 
-export default function StageRoute({ data, head }) {
+export interface StageProps {
+  data: StagePayload
+  head: SiteMetaProps
+}
+
+export default function StageRoute({ data, head }: StageProps) {
   return (
     <>
       <Head>

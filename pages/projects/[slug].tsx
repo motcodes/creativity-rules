@@ -1,10 +1,16 @@
-import { SiteMeta } from 'components/global/SiteMeta'
+import { SiteMeta, SiteMetaProps } from 'components/global/SiteMeta'
 import { ProjectPage } from 'components/pages/project/ProjectPage'
 import { getPageSeo, getPathsByType, getProjectBySlug } from 'lib/sanity.client'
 import { GetStaticPaths, GetStaticProps } from 'next'
 import Head from 'next/head'
+import { ProjectPayload } from 'types'
 
-export default function ProjectSlugRoute({ data, head }) {
+export interface ProjectProps {
+  data: ProjectPayload
+  head: SiteMetaProps
+}
+
+export default function ProjectSlugRoute({ data, head }: ProjectProps) {
   return (
     <>
       <Head>
