@@ -2,6 +2,7 @@ import courseOfStudies from './documents/courseOfStudies'
 import deparment from './documents/deparment'
 import page from './documents/page'
 import project from './documents/project'
+import schedule from './documents/schedule'
 import speaker from './documents/speaker'
 import objects from './objects'
 import projectsCard from './shared/projectsCard'
@@ -24,6 +25,7 @@ export default {
     page,
     project,
     speaker,
+    schedule,
     courseOfStudies,
     deparment,
     //shared

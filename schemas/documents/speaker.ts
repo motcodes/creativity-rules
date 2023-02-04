@@ -6,7 +6,6 @@ export default defineType({
   title: 'Speaker',
   type: 'document',
   icon: IceCreamIcon,
-  liveEdit: true,
   groups: [
     { name: 'talk', title: 'Talk', default: true },
     { name: 'speaker', title: 'Speaker' },
@@ -49,28 +48,11 @@ export default defineType({
       validation: (rule) => rule.required(),
     }),
     defineField({
-      name: 'day',
-      title: 'Day',
-      type: 'string',
+      name: 'timeframe',
+      title: 'Timeframe',
+      type: 'reference',
       group: 'talk',
-      options: {
-        list: ['thursday', 'friday'],
-      },
-      validation: (rule) => rule.required(),
-    }),
-    defineField({
-      name: 'startTime',
-      title: 'Talk Start Time',
-      type: 'string',
-      group: 'talk',
-      validation: (rule) => rule.required(),
-    }),
-    defineField({
-      name: 'endTime',
-      title: 'Talk End Time',
-      type: 'string',
-      group: 'talk',
-      validation: (rule) => rule.required(),
+      to: [{ type: 'schedule' }],
     }),
     defineField({
       name: 'topic',
