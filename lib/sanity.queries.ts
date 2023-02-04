@@ -23,17 +23,6 @@ const resolvelinkWithLabel = () => groq`
   }),
 `
 
-const showcaseProjects = groq`
-  showcaseProjects[]->{
-    _type,
-    coverImage, 
-    overview, 
-    "slug": "/projects/" + slug.current,
-    tags, 
-    title, 
-  } 
-`
-
 const overview = groq`
   "overview": overview[]{
     ...,
@@ -48,11 +37,17 @@ const overview = groq`
   }
 `
 
+const showcaseProjects = groq`
+  showcaseProjects[]->{
+    ...,
+    "slug": "/projects/" + slug.current,
+    ${overview}
+  } 
+`
+
 const departments = groq`
   departments[]->{
-    title,
-    value,
-    _id,
+    ...,
     courseOfStudies->{
       title,
       value
@@ -62,10 +57,8 @@ const departments = groq`
 
 export const homePageQuery = groq`
   *[_type == "home"][0]{
-    _id, 
-    title, 
+    ...,
     ${overview},
-    date,
     socialLinks[]{
       ${resolvelinkWithLabel()}
     }, 
@@ -76,8 +69,7 @@ export const homePageQuery = groq`
 `
 export const aboutPageQuery = groq`
   *[_type == "about"][0]{
-    _id, 
-    title, 
+    ...,
     ${overview}, 
     ${showcaseProjects}, 
   }
@@ -85,11 +77,7 @@ export const aboutPageQuery = groq`
 
 export const stagePageQuery = groq`
   *[_type == "stage"][0]{
-    _id, 
-    title,
-    stream,
-    schedule,
-    seo,
+    ...,
   }
 `
 
@@ -102,33 +90,22 @@ export const seoPageBySlugQuery = (page: string) => groq`
 
 export const pagesBySlugQuery = groq`
   *[_type == "page" && slug.current == $slug][0] {
-    _id,
-    body,
-    slug,
-    title,
+    ...,
     ${overview}, 
   }
 `
 
 export const projectBySlugQuery = groq`
   *[_type == "project" && slug.current == $slug][0] {
-    _id,
-    seo,
-    coverImage,
-    logo,
-    site, 
+    ...,
     "slug": slug.current,
-    title,
-    socialLinks,
-    team,
-    description,
     ${overview},
     ${departments}
   }
 `
 export const talkBySlugQuery = groq`
   *[_type == "speaker" && slug.current == $slug][0] {
-    ...
+    ...,
   }
 `
 
@@ -140,6 +117,7 @@ export const pathsByType = (type: string) => groq`
 
 export const settingsQuery = groq`
   *[_type == "settings"][0]{
+    ...,
     navigation[]->{
       "type": _type,
       "slug": coalesce(slug.current, ''),
@@ -151,7 +129,5 @@ export const settingsQuery = groq`
     socialLinks[]{
       ${resolvelinkWithLabel()}
     },
-    seo,
-    logo,
   }
 `
