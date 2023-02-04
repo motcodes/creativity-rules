@@ -77,6 +77,18 @@ export default defineType({
       validation: (rule) => rule.required(),
     }),
     defineField({
+      name: 'speakerSlug',
+      title: 'Speaker Slug',
+      type: 'slug',
+      group: 'speaker',
+      options: {
+        source: 'name',
+        maxLength: 96,
+        isUnique: (value, context) => context.defaultIsUnique(value, context),
+      },
+      validation: (rule) => rule.required(),
+    }),
+    defineField({
       title: 'About the Speaker',
       name: 'aboutPerson',
       type: 'overview',

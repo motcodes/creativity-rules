@@ -104,14 +104,24 @@ export const projectBySlugQuery = groq`
   }
 `
 export const talkBySlugQuery = groq`
-  *[_type == "speaker" && slug.current == $slug][0] {
+  *[_type == "speaker" && (slug.current == $slug || speakerSlug.current == $slug)][0] {
     ...,
+    project->{
+      "slug": "/projects/" + slug.current,
+      ${overview},
+      ${departments},
+    },
+    speakerLinks[]{
+      ${resolvelinkWithLabel()}
+    },
+    timeframe->,
   }
 `
 
 export const pathsByType = (type: string) => groq`
  *[_type == "${type}"] {
-    "slug": slug.current,
+    "slug": coalesce(slug.current, ''),
+    "speakerSlug": coalesce(speakerSlug.current, ''),
   }
 `
 
@@ -119,7 +129,7 @@ export const settingsQuery = groq`
   *[_type == "settings"][0]{
     ...,
     navigation[]->{
-      "type": _type,
+      "type": 'internal',
       "slug": coalesce(slug.current, ''),
       "label": title,
     },

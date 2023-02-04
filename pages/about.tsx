@@ -1,6 +1,6 @@
 import { SiteMeta } from 'components/global/SiteMeta'
 import { AboutPage } from 'components/pages/about/AboutPage'
-import { getAboutPage, getPageSeo } from 'lib/sanity.client'
+import { getAboutPage, getPageSeo, getSettings } from 'lib/sanity.client'
 import { GetStaticProps } from 'next'
 import Head from 'next/head'
 
@@ -18,15 +18,19 @@ export default function AboutRoute({ data, head }) {
 }
 
 export const getStaticProps: GetStaticProps = async () => {
-  const data = await getAboutPage()
-  const head = await getPageSeo({
-    page: 'about',
-  })
+  const [data, head, settings] = await Promise.all([
+    getAboutPage(),
+    getPageSeo({
+      page: 'about',
+    }),
+    getSettings(),
+  ])
 
   return {
     props: {
       data,
       head,
+      settings,
     },
     revalidate: 15,
   }

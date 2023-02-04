@@ -5,7 +5,7 @@ module.exports = {
   content: [
     './app/**/*.{js,ts,jsx,tsx}',
     './components/**/*.{js,ts,jsx,tsx}',
-    './intro-template/**/*.{js,ts,jsx,tsx}',
+    './pages/**/*.{js,ts,jsx,tsx}',
   ],
   theme: {
     colors: {
@@ -21,6 +21,12 @@ module.exports = {
     },
     extend: {
       height: {
+        screen: ['100vh', '100svh'],
+      },
+      minHeight: {
+        screen: ['100vh', '100svh'],
+      },
+      maxHeight: {
         screen: ['100vh', '100svh'],
       },
     },

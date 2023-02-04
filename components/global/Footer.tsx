@@ -5,12 +5,12 @@ import { Image } from 'sanity'
 import { LinkItem } from 'types'
 
 export interface FooterProps {
-  logo: Image
+  logo?: Image
   links: Array<LinkItem>
   socialLinks: Array<LinkItem>
 }
 
-export function Footer({ links, logo, socialLinks }: FooterProps) {
+export function Footer({ links, socialLinks }: FooterProps) {
   const [linksLeft, linksRight] = partition(links, 2)
   return (
     <footer className="bottom-0 w-full p-12 md:py-20 border-t flex flex-row justify-between">

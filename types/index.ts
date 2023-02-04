@@ -1,5 +1,11 @@
 import type { Image, PortableTextBlock } from 'sanity'
 
+export interface SEOProps {
+  title: string
+  description: PortableTextBlock[]
+  ogImage: Image
+}
+
 export interface LinkItem {
   slug: string
   label: string
@@ -65,8 +71,57 @@ export interface SettingsPayload {
   socialLinks: Array<LinkItem>
 }
 
-export interface SEOProps {
+export interface ProjectPayload {
+  seo: SEOProps
+  title?: string
+  overview?: PortableTextBlock[]
+  coverImage?: Image
+  logo?: Image
+  slug: string
+  description?: PortableTextBlock[]
+  site?: string
+  socialLinks?: Array<{
+    _key: string
+    label: string
+    url: string
+  }>
+  team: Array<{
+    _key: string
+    name: string
+    credits?: Array<string>
+    link?: {
+      label: string
+      url: string
+    }
+  }>
+  departments: Array<{
+    _id: string
+    courseOfStudies: { title: string; value: string }
+    title: string
+    value: string
+  }>
+}
+
+export interface TalkSpeakerPayload {
+  aboutPerson?: PortableTextBlock[]
+  company?: string
+  name: string
+  project?: ProjectPayload
+  seo: SEOProps
+  slug: {
+    current: string
+  }
+  speakerImage?: Image
+  speakerLinks?: LinkItem[]
+  speakerSlug: {
+    current: string
+  }
+  talkDescription?: PortableTextBlock[]
+  timeframe?: {
+    day?: string
+    endTime?: string
+    startTime?: string
+  }
   title: string
-  description: PortableTextBlock[]
-  ogImage: Image
+  topic?: string
 }

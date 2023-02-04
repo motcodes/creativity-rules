@@ -1,4 +1,3 @@
-import { ProjectPayload } from 'components/pages/project/ProjectPage'
 import { apiVersion, dataset, projectId, useCdn } from 'lib/sanity.api'
 import {
   aboutPageQuery,
@@ -17,7 +16,9 @@ import type {
   AboutPagePayload,
   HomePagePayload,
   PagePayload,
+  ProjectPayload,
   SettingsPayload,
+  TalkSpeakerPayload,
 } from 'types'
 
 import { urlForSeoImage } from './sanity.image'
@@ -89,13 +90,13 @@ export async function getProjectBySlug({
 }
 export async function getTalkBySlug({
   slug,
-}: SlugProps): Promise<ProjectPayload> {
+}: SlugProps): Promise<TalkSpeakerPayload> {
   return await sanityClient()?.fetch(talkBySlugQuery, { slug })
 }
 
 export async function getPathsByType(
   type: string
-): Promise<Array<{ slug: string }>> {
+): Promise<Array<{ slug: string; speakerSlug?: string }>> {
   return await sanityClient()?.fetch(pathsByType(type))
 }
 

@@ -1,6 +1,6 @@
 import { SiteMeta } from 'components/global/SiteMeta'
 import { HomePage } from 'components/pages/home/HomePage'
-import { getHomePage, getPageSeo } from 'lib/sanity.client'
+import { getHomePage, getPageSeo, getSettings } from 'lib/sanity.client'
 import { GetStaticProps } from 'next'
 import Head from 'next/head'
 
@@ -18,11 +18,12 @@ export default function IndexRoute({ data, head }) {
 }
 
 export const getStaticProps: GetStaticProps = async () => {
-  const [data, head] = await Promise.all([
+  const [data, head, settings] = await Promise.all([
     getHomePage(),
     getPageSeo({
       page: 'home',
     }),
+    getSettings(),
   ])
 
   return {

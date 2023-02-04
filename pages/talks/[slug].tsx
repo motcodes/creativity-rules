@@ -1,16 +1,33 @@
-import { SiteMeta } from 'components/global/SiteMeta'
-import { getPageSeo, getPathsByType, getTalkBySlug } from 'lib/sanity.client'
+import { SiteMeta, SiteMetaProps } from 'components/global/SiteMeta'
+import { Header } from 'components/shared/Header'
+import {
+  getPageSeo,
+  getPathsByType,
+  getSettings,
+  getTalkBySlug,
+} from 'lib/sanity.client'
 import { GetStaticPaths, GetStaticProps } from 'next'
 import Head from 'next/head'
+import { TalkSpeakerPayload } from 'types'
 
-export default function TalkSlugRoute({ data, head }) {
+export interface TalkProps {
+  data: TalkSpeakerPayload
+  head: SiteMetaProps
+}
+
+export default function TalkSlugRoute({ data, head }: TalkProps) {
   return (
     <>
       <Head>
         <SiteMeta {...head} />
       </Head>
       <div className="flex min-h-screen flex-col bg-white text-black">
-        <h1>{data.title}</h1>
+        <h1 className="text-3xl">Talk</h1>
+        <Header
+          title={data.title}
+          description={data.talkDescription}
+          logo={data.speakerImage}
+        />
       </div>
     </>
   )
@@ -26,16 +43,20 @@ export const getStaticPaths: GetStaticPaths = async () => {
 }
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
-  const data = await getTalkBySlug({ slug: params?.slug as string })
-  const head = await getPageSeo({
-    page: 'speaker',
-    slug: params.slug as string,
-  })
+  const [data, head, settings] = await Promise.all([
+    getTalkBySlug({ slug: params?.slug as string }),
+    getPageSeo({
+      page: 'speaker',
+      slug: params.slug as string,
+    }),
+    getSettings(),
+  ])
 
   return {
     props: {
       data,
       head,
+      settings,
     },
     revalidate: 15,
   }
