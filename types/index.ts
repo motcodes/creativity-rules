@@ -1,3 +1,4 @@
+import { PortableText } from '@portabletext/react'
 import type { Image, PortableTextBlock } from 'sanity'
 
 export interface SEOProps {
@@ -124,4 +125,15 @@ export interface TalkSpeakerPayload {
   }
   title: string
   topic?: string
+}
+
+export interface VenuePayload {
+  title: string
+  description: PortableTextBlock[]
+  location: Array<{
+    address: LinkItem
+    description: PortableTextBlock[]
+    image: Image
+    title: string
+  }>
 }

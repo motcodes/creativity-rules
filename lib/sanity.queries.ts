@@ -80,6 +80,19 @@ export const stagePageQuery = groq`
     ...,
   }
 `
+export const venuePageQuery = groq`
+  *[_type == "venue"][0]{
+    ...,
+    locations[]{
+      ...,
+      address{
+        label,
+        "type": 'internal',
+        "slug": coalesce(url, ''),
+      }
+    }
+  }
+`
 
 export const seoPageQuery = (page: string) => groq`
   *[_type == "${page}"][0].seo

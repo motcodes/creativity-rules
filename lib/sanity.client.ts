@@ -10,6 +10,7 @@ import {
   settingsQuery,
   stagePageQuery,
   talkBySlugQuery,
+  venuePageQuery,
 } from 'lib/sanity.queries'
 import { createClient } from 'next-sanity'
 import type {
@@ -77,6 +78,10 @@ export async function getAboutPage(): Promise<AboutPagePayload> {
 
 export async function getStagePage(): Promise<AboutPagePayload> {
   return await sanityClient()?.fetch(stagePageQuery)
+}
+
+export async function getVenuePage(): Promise<AboutPagePayload> {
+  return await sanityClient()?.fetch(venuePageQuery)
 }
 
 export async function getPageBySlug({ slug }: SlugProps): Promise<PagePayload> {
