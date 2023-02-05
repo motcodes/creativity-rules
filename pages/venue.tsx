@@ -5,12 +5,12 @@ import { GetStaticProps } from 'next'
 import Head from 'next/head'
 import { VenuePayload } from 'types'
 
-export interface VenueProps {
+export interface VenuePageProps {
   data: VenuePayload
   head: SiteMetaProps
 }
 
-export default function VenueRoute({ data, head }: VenueProps) {
+export default function VenueRoute({ data, head }: VenuePageProps) {
   return (
     <>
       <Head>

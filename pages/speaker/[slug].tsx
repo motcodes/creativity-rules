@@ -10,12 +10,12 @@ import { GetStaticPaths, GetStaticProps } from 'next'
 import Head from 'next/head'
 import { TalkSpeakerPayload } from 'types'
 
-export interface SpeakerProps {
+export interface SpeakerPageProps {
   data: TalkSpeakerPayload
   head: SiteMetaProps
 }
 
-export default function SpeakerSlugRoute({ data, head }: SpeakerProps) {
+export default function SpeakerSlugRoute({ data, head }: SpeakerPageProps) {
   return (
     <>
       <Head>

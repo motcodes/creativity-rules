@@ -10,12 +10,12 @@ import { GetStaticPaths, GetStaticProps } from 'next'
 import Head from 'next/head'
 import { PagePayload } from 'types'
 
-export interface PageProps {
+export interface SlugPageProps {
   data: PagePayload
   head: SiteMetaProps
 }
 
-export default function SlugRoute({ data, head }: PageProps) {
+export default function SlugRoute({ data, head }: SlugPageProps) {
   return (
     <>
       <Head>

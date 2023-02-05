@@ -3,14 +3,14 @@ import { AboutPage } from 'components/pages/about/AboutPage'
 import { getAboutPage, getPageSeo, getSettings } from 'lib/sanity.client'
 import { GetStaticProps } from 'next'
 import Head from 'next/head'
-import { AboutPagePayload } from 'types'
+import { AboutPayload } from 'types'
 
-export interface AboutProps {
-  data: AboutPagePayload
+export interface AboutPageProps {
+  data: AboutPayload
   head: SiteMetaProps
 }
 
-export default function AboutRoute({ data, head }: AboutProps) {
+export default function AboutRoute({ data, head }: AboutPageProps) {
   return (
     <>
       <Head>

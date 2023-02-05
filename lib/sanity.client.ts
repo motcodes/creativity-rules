@@ -14,12 +14,14 @@ import {
 } from 'lib/sanity.queries'
 import { createClient } from 'next-sanity'
 import type {
-  AboutPagePayload,
-  HomePagePayload,
+  AboutPayload,
+  HomePayload,
   PagePayload,
   ProjectPayload,
   SettingsPayload,
+  StagePayload,
   TalkSpeakerPayload,
+  VenuePayload,
 } from 'types'
 
 import { urlForSeoImage } from './sanity.image'
@@ -65,19 +67,19 @@ export async function getPageSeo({
   }
 }
 
-export async function getHomePage(): Promise<HomePagePayload> {
+export async function getHomePage(): Promise<HomePayload> {
   return await sanityClient()?.fetch(homePageQuery)
 }
 
-export async function getAboutPage(): Promise<AboutPagePayload> {
+export async function getAboutPage(): Promise<AboutPayload> {
   return await sanityClient()?.fetch(aboutPageQuery)
 }
 
-export async function getStagePage(): Promise<AboutPagePayload> {
+export async function getStagePage(): Promise<StagePayload> {
   return await sanityClient()?.fetch(stagePageQuery)
 }
 
-export async function getVenuePage(): Promise<AboutPagePayload> {
+export async function getVenuePage(): Promise<VenuePayload> {
   return await sanityClient()?.fetch(venuePageQuery)
 }
 

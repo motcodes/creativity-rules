@@ -4,12 +4,12 @@ import { getPageSeo, getSettings, getStagePage } from 'lib/sanity.client'
 import Head from 'next/head'
 import { StagePayload } from 'types'
 
-export interface StageProps {
+export interface StagePageProps {
   data: StagePayload
   head: SiteMetaProps
 }
 
-export default function StageRoute({ data, head }: StageProps) {
+export default function StageRoute({ data, head }: StagePageProps) {
   return (
     <>
       <Head>

@@ -35,7 +35,7 @@ export interface ShowcaseProject {
 
 // Page payloads
 
-export interface HomePagePayload {
+export interface HomePayload {
   footer?: PortableTextBlock[]
   overview: PortableTextBlock[]
   title: string
@@ -44,7 +44,7 @@ export interface HomePagePayload {
   socialLinks: LinkItem[]
 }
 
-export interface AboutPagePayload {
+export interface AboutPayload {
   footer?: PortableTextBlock[]
   overview?: PortableTextBlock[]
   showcaseProjects?: ShowcaseProject[]

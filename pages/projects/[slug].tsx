@@ -5,12 +5,12 @@ import { GetStaticPaths, GetStaticProps } from 'next'
 import Head from 'next/head'
 import { ProjectPayload } from 'types'
 
-export interface ProjectProps {
+export interface ProjectPageProps {
   data: ProjectPayload
   head: SiteMetaProps
 }
 
-export default function ProjectSlugRoute({ data, head }: ProjectProps) {
+export default function ProjectSlugRoute({ data, head }: ProjectPageProps) {
   return (
     <>
       <Head>
