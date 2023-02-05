@@ -1,4 +1,3 @@
-import { PortableText } from '@portabletext/react'
 import type { Image, PortableTextBlock } from 'sanity'
 
 export interface SEOProps {

@@ -24,9 +24,6 @@ import type {
 
 import { urlForSeoImage } from './sanity.image'
 
-/**
- * Checks if it's safe to create a client instance, as `@sanity/client` will throw an error if `projectId` is false
- */
 const sanityClient = () => {
   return projectId
     ? createClient({ projectId, dataset, apiVersion, useCdn })

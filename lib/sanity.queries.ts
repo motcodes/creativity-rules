@@ -37,14 +37,6 @@ const overview = groq`
   }
 `
 
-const showcaseProjects = groq`
-  showcaseProjects[]->{
-    ...,
-    "slug": "/projects/" + slug.current,
-    ${overview}
-  } 
-`
-
 const departments = groq`
   departments[]->{
     ...,
@@ -70,8 +62,7 @@ export const homePageQuery = groq`
 export const aboutPageQuery = groq`
   *[_type == "about"][0]{
     ...,
-    ${overview}, 
-    ${showcaseProjects}, 
+    ${overview},
   }
 `
 
