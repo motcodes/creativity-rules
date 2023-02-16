@@ -1,4 +1,4 @@
-# Dokku Static Site
+# Dokku Static Site.
 
 This is a dummy static site that you can deploy to a dokku app "x" quickly.
 Before using it for the first time, you need to add the dokku remote:
