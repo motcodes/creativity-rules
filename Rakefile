@@ -31,7 +31,7 @@ end
 
 def commit_and_push(project)
   `git commit -a -m "ready to deploy to #{project}"`
-  `git push dokku master`
+  `git push -f dokku master`
 end
 
 task :default do
