@@ -1,8 +1,9 @@
+import { GetStaticProps } from 'next'
+import Head from 'next/head'
+
 import { SiteMeta, SiteMetaProps } from 'components/global/SiteMeta'
 import { Header } from 'components/shared/Header'
 import { getPageSeo, getSettings, getVenuePage } from 'lib/sanity.client'
-import { GetStaticProps } from 'next'
-import Head from 'next/head'
 import { VenuePayload } from 'types'
 
 export interface VenuePageProps {

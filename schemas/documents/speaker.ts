@@ -18,7 +18,7 @@ export default defineType({
       title: 'SEO',
       type: 'seo',
       group: 'seo',
-      validation: (rule) => rule.required(),
+      validation: rule => rule.required(),
     }),
     // Talk
     defineField({
@@ -26,7 +26,7 @@ export default defineType({
       title: 'Title',
       type: 'string',
       group: 'talk',
-      validation: (rule) => rule.required(),
+      validation: rule => rule.required(),
     }),
     defineField({
       name: 'slug',
@@ -38,14 +38,14 @@ export default defineType({
         maxLength: 96,
         isUnique: (value, context) => context.defaultIsUnique(value, context),
       },
-      validation: (rule) => rule.required(),
+      validation: rule => rule.required(),
     }),
     defineField({
       title: 'Description',
       name: 'talkDescription',
       type: 'overview',
       group: 'talk',
-      validation: (rule) => rule.required(),
+      validation: rule => rule.required(),
     }),
     defineField({
       name: 'timeframe',
@@ -74,7 +74,7 @@ export default defineType({
       title: 'Name of Speaker',
       type: 'string',
       group: 'speaker',
-      validation: (rule) => rule.required(),
+      validation: rule => rule.required(),
     }),
     defineField({
       name: 'speakerSlug',
@@ -86,14 +86,14 @@ export default defineType({
         maxLength: 96,
         isUnique: (value, context) => context.defaultIsUnique(value, context),
       },
-      validation: (rule) => rule.required(),
+      validation: rule => rule.required(),
     }),
     defineField({
       title: 'About the Speaker',
       name: 'aboutPerson',
       type: 'overview',
       group: 'speaker',
-      validation: (rule) => rule.required(),
+      validation: rule => rule.required(),
     }),
     defineField({
       title: 'Company',
@@ -106,7 +106,7 @@ export default defineType({
       title: 'Speaker Image',
       type: 'imageAlt',
       group: 'speaker',
-      validation: (rule) => rule.required(),
+      validation: rule => rule.required(),
     }),
     defineField({
       title: 'Speaker Links',

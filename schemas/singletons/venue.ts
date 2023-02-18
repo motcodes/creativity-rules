@@ -18,7 +18,7 @@ export default defineType({
       title: 'SEO',
       type: 'seo',
       group: 'seo',
-      validation: (rule) => rule.required(),
+      validation: rule => rule.required(),
     }),
 
     //Body
@@ -27,7 +27,7 @@ export default defineType({
       title: 'Title',
       type: 'string',
       group: 'body',
-      validation: (rule) => rule.required(),
+      validation: rule => rule.required(),
     }),
     defineField({
       name: 'slug',
@@ -39,14 +39,14 @@ export default defineType({
         maxLength: 96,
         isUnique: (value, context) => context.defaultIsUnique(value, context),
       },
-      validation: (rule) => rule.required(),
+      validation: rule => rule.required(),
     }),
     defineField({
       title: 'Description',
       name: 'description',
       type: 'overview',
       group: 'body',
-      validation: (rule) => rule.required(),
+      validation: rule => rule.required(),
     }),
 
     defineField({
@@ -62,25 +62,25 @@ export default defineType({
               name: 'title',
               title: 'Title',
               type: 'string',
-              validation: (rule) => rule.required(),
+              validation: rule => rule.required(),
             }),
             defineField({
               title: 'Description',
               name: 'description',
               type: 'overview',
-              validation: (rule) => rule.required(),
+              validation: rule => rule.required(),
             }),
             defineField({
               title: 'Address',
               name: 'address',
               type: 'linkExternalWithLabel',
-              validation: (rule) => rule.required(),
+              validation: rule => rule.required(),
             }),
             defineField({
               title: 'Venue Image',
               name: 'image',
               type: 'imageAlt',
-              validation: (rule) => rule.required(),
+              validation: rule => rule.required(),
             }),
           ],
         },

@@ -9,7 +9,7 @@ const linkSocial = {
       title: 'URL',
       name: 'url',
       type: 'url',
-      validation: (Rule) =>
+      validation: Rule =>
         Rule.required().uri({
           scheme: ['http', 'https', 'tel', 'mailto'],
         }),
@@ -27,7 +27,7 @@ const linkSocial = {
           { title: 'Soundcloud', value: 'soundcloud' },
         ],
       },
-      validation: (Rule) => Rule.required(),
+      validation: Rule => Rule.required(),
     },
   ],
   preview: {
@@ -51,7 +51,7 @@ const linkExternal = {
       title: 'URL',
       name: 'url',
       type: 'url',
-      validation: (Rule) =>
+      validation: Rule =>
         Rule.required().uri({
           scheme: ['http', 'https', 'tel', 'mailto'],
         }),
@@ -72,7 +72,7 @@ const linkExternalWithLabel = {
     {
       name: 'label',
       type: 'string',
-      validation: (Rule) => Rule.required(),
+      validation: Rule => Rule.required(),
     },
   ],
   preview: {
@@ -104,7 +104,7 @@ const linkInternal = {
         { type: 'about' },
         { type: 'stage' },
       ],
-      validation: (Rule) => Rule.required(),
+      validation: Rule => Rule.required(),
     },
   ],
   preview: {
@@ -125,7 +125,7 @@ const linkInternalWithLabel = {
     {
       name: 'label',
       type: 'string',
-      validation: (Rule) => Rule.required(),
+      validation: Rule => Rule.required(),
     },
   ],
   preview: {

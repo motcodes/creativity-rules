@@ -1,8 +1,8 @@
+import { Fragment } from 'react'
+
 import { AutoLink } from 'components/shared/AutoLink'
 import { CustomPortableText } from 'components/shared/CustomPortableText'
-import { Fragment } from 'react'
-import type { HomePagePayload } from 'types'
-
+import type { HomePayload } from 'types'
 import TitleSvg from './TitleSvg'
 
 export function HomePage({
@@ -11,7 +11,7 @@ export function HomePage({
   date,
   links,
   socialLinks,
-}: HomePagePayload) {
+}: HomePayload) {
   return (
     <div className="h-screen space-y-20 p-6">
       <div className="flex flex-col h-full gap-4 justify-between">

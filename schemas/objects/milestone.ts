@@ -9,7 +9,7 @@ export default defineType({
       type: 'string',
       name: 'title',
       title: 'Title',
-      validation: (rule) => rule.required(),
+      validation: rule => rule.required(),
     }),
     defineField({
       type: 'string',
@@ -40,7 +40,7 @@ export default defineType({
       type: 'duration',
       name: 'duration',
       title: 'Duration',
-      validation: (rule) => rule.required(),
+      validation: rule => rule.required(),
     }),
   ],
   preview: {

@@ -16,7 +16,7 @@ export default defineType({
       type: 'seo',
       title: 'SEO',
       group: 'seo',
-      validation: (rule) => rule.required(),
+      validation: rule => rule.required(),
     }),
     defineField({
       name: 'title',
@@ -24,7 +24,7 @@ export default defineType({
       title: 'Title',
       type: 'string',
       group: 'body',
-      validation: (rule) => rule.required(),
+      validation: rule => rule.required(),
     }),
     defineField({
       name: 'slug',
@@ -36,7 +36,7 @@ export default defineType({
         maxLength: 96,
         isUnique: (value, context) => context.defaultIsUnique(value, context),
       },
-      validation: (rule) => rule.required(),
+      validation: rule => rule.required(),
     }),
     defineField({
       name: 'overview',

@@ -10,18 +10,18 @@ export default defineType({
     defineField({
       name: 'title',
       type: 'string',
-      validation: (rule) => rule.required(),
+      validation: rule => rule.required(),
     }),
     defineField({
       name: 'value',
       type: 'string',
-      validation: (rule) => rule.required(),
+      validation: rule => rule.required(),
     }),
     defineField({
       name: 'courseOfStudies',
       type: 'reference',
       to: [{ type: 'courseOfStudies' }],
-      validation: (rule) => rule.required(),
+      validation: rule => rule.required(),
     }),
   ],
   preview: {

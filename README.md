@@ -77,7 +77,7 @@ npx vercel env pull
 ### Step 3. Run Next.js locally in development mode
 
 ```bash
-npm install && npm run dev
+pnpm install && pnpm hsuky install && pnpm dev
 ```
 
 When you run this development server, the changes you make in your frontend and studio configuration will be applied live using hot reloading.

@@ -14,19 +14,19 @@ export default defineType({
       options: {
         list: ['thursday', 'friday'],
       },
-      validation: (rule) => rule.required(),
+      validation: rule => rule.required(),
     }),
     defineField({
       name: 'startTime',
       title: 'Talk Start Time',
       type: 'string',
-      validation: (rule) => rule.required(),
+      validation: rule => rule.required(),
     }),
     defineField({
       name: 'endTime',
       title: 'Talk End Time',
       type: 'string',
-      validation: (rule) => rule.required(),
+      validation: rule => rule.required(),
     }),
   ],
   preview: {

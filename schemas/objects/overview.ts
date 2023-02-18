@@ -34,5 +34,5 @@ export default defineType({
       },
     }),
   ],
-  validation: (rule) => rule.max(155).required(),
+  validation: rule => rule.max(155).required(),
 })

@@ -1,5 +1,6 @@
 import { ComponentIcon } from '@sanity/icons'
 import { type StructureResolver } from 'sanity/desk'
+
 import { pageStructurePages, sharedComponentsStructurePages } from 'schemas'
 
 export const singletonPlugin = (types: string[]) => {
@@ -11,7 +12,7 @@ export const singletonPlugin = (types: string[]) => {
       newDocumentOptions: (prev, { creationContext }) => {
         if (creationContext.type === 'global') {
           return prev.filter(
-            (templateItem) => !types.includes(templateItem.templateId)
+            templateItem => !types.includes(templateItem.templateId)
           )
         }
 
@@ -34,7 +35,7 @@ export const singletonPlugin = (types: string[]) => {
 export const pageStructure = (): // typeDefArray: DocumentDefinition[]
 StructureResolver => {
   const typeDefArray = pageStructurePages
-  return (S) => {
+  return S => {
     // Goes through all of the singletons that were provided and translates them into something the
     // Desktool can understand
     const singletonItems = showSingletonEditor(typeDefArray, S)
@@ -45,9 +46,9 @@ StructureResolver => {
 
     // The default root list items (except custom ones)
     const defaultListItems = S.documentTypeListItems().filter(
-      (listItem) =>
+      listItem =>
         ![...typeDefArray, ...sharedComponentsStructurePages].find(
-          (item) => item.name === listItem.getId()
+          item => item.name === listItem.getId()
         )
     )
 
@@ -74,7 +75,7 @@ StructureResolver => {
 }
 
 const showSingletonEditor = (arr, S) =>
-  arr.map((typeDef) =>
+  arr.map(typeDef =>
     S.listItem()
       .title(typeDef.title)
       .icon(typeDef.icon)

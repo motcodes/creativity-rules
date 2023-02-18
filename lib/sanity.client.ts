@@ -1,3 +1,5 @@
+import { createClient } from 'next-sanity'
+
 import { apiVersion, dataset, projectId, useCdn } from 'lib/sanity.api'
 import {
   aboutPageQuery,
@@ -12,7 +14,6 @@ import {
   talkBySlugQuery,
   venuePageQuery,
 } from 'lib/sanity.queries'
-import { createClient } from 'next-sanity'
 import type {
   AboutPayload,
   HomePayload,
@@ -23,7 +24,6 @@ import type {
   TalkSpeakerPayload,
   VenuePayload,
 } from 'types'
-
 import { urlForSeoImage } from './sanity.image'
 
 const sanityClient = () => {

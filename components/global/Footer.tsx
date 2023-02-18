@@ -1,7 +1,8 @@
-import { AutoLink } from 'components/shared/AutoLink'
-import { partition } from 'lib/partition'
 import Link from 'next/link'
 import { Image } from 'sanity'
+
+import { AutoLink } from 'components/shared/AutoLink'
+import { partition } from 'lib/partition'
 import { LinkItem } from 'types'
 
 export interface FooterProps {
@@ -36,7 +37,7 @@ export function Footer({ links, socialLinks }: FooterProps) {
       </div>
       {!!socialLinks?.length && (
         <ul>
-          {socialLinks.map((item) => (
+          {socialLinks.map(item => (
             <li key={item.label}>
               <Link
                 href={item.slug}

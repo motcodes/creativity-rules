@@ -1,3 +1,6 @@
+import { GetStaticPaths, GetStaticProps } from 'next'
+import Head from 'next/head'
+
 import { SiteMeta, SiteMetaProps } from 'components/global/SiteMeta'
 import { Page } from 'components/pages/page/Page'
 import {
@@ -6,8 +9,6 @@ import {
   getPathsByType,
   getSettings,
 } from 'lib/sanity.client'
-import { GetStaticPaths, GetStaticProps } from 'next'
-import Head from 'next/head'
 import { PagePayload } from 'types'
 
 export interface SlugPageProps {
@@ -32,7 +33,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
   const data = await getPathsByType('page')
 
   return {
-    paths: data.map((item) => ({ params: { slug: item.slug } })),
+    paths: data.map(item => ({ params: { slug: item.slug } })),
     fallback: 'blocking',
   }
 }

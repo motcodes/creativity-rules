@@ -25,9 +25,9 @@ deploy:
     url: https://cr2023.projects.multimediatechnology.at/
   variables:
     GIT_REMOTE_URL: ssh://dokku@projects.multimediatechnology.at:5412/cr2023
-  script: 
+  script:
     - dokku-deploy
-  after_script: 
+  after_script:
     - dokku-unlock
 # stages:
 #   - deploy

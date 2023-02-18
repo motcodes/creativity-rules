@@ -1,6 +1,5 @@
 import { CustomPortableText } from 'components/shared/CustomPortableText'
 import { Header } from 'components/shared/Header'
-import ScrollUp from 'components/shared/ScrollUp'
 import type { PagePayload } from 'types'
 
 export function Page({ body, overview, title }: PagePayload) {
@@ -16,7 +15,6 @@ export function Page({ body, overview, title }: PagePayload) {
             />
           </div>
         )}
-        <ScrollUp />
       </div>
     </div>
   )

@@ -1,8 +1,9 @@
+import { GetStaticProps } from 'next'
+import Head from 'next/head'
+
 import { SiteMeta, SiteMetaProps } from 'components/global/SiteMeta'
 import { HomePage } from 'components/pages/home/HomePage'
 import { getHomePage, getPageSeo, getSettings } from 'lib/sanity.client'
-import { GetStaticProps } from 'next'
-import Head from 'next/head'
 import { HomePayload } from 'types'
 
 export interface IndexPageProps {

@@ -12,7 +12,7 @@ export function Navbar({ navigation }: NavbarProps) {
         navigation.map((item, key) => (
           <AutoLink
             key={key}
-            className={`text-lg hover:text-black md:text-xl text-gray-600`}
+            className={'text-lg hover:text-black md:text-xl text-gray-600'}
             slug={item.slug}
             type={item.type}
           >

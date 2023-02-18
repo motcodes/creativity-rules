@@ -1,3 +1,6 @@
+import { GetStaticPaths, GetStaticProps } from 'next'
+import Head from 'next/head'
+
 import { SiteMeta, SiteMetaProps } from 'components/global/SiteMeta'
 import { Header } from 'components/shared/Header'
 import {
@@ -6,8 +9,6 @@ import {
   getSettings,
   getTalkBySlug,
 } from 'lib/sanity.client'
-import { GetStaticPaths, GetStaticProps } from 'next'
-import Head from 'next/head'
 import { TalkSpeakerPayload } from 'types'
 
 export interface TalkPageProps {
@@ -37,7 +38,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
   const data = await getPathsByType('speaker')
 
   return {
-    paths: data.map((item) => ({ params: { slug: item.slug } })),
+    paths: data.map(item => ({ params: { slug: item.slug } })),
     fallback: 'blocking',
   }
 }

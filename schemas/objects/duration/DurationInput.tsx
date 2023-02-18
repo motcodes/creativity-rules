@@ -12,15 +12,15 @@ export function DurationInput(props: ObjectInputProps) {
   const { members, renderInput, renderItem, renderPreview } = props
 
   const fieldMembers = useMemo(
-    () => members.filter((mem) => mem.kind === 'field') as FieldMember[],
+    () => members.filter(mem => mem.kind === 'field') as FieldMember[],
     [members]
   )
 
-  const start = fieldMembers.find((mem) => mem.name === 'start')
-  const end = fieldMembers.find((mem) => mem.name === 'end')
+  const start = fieldMembers.find(mem => mem.name === 'start')
+  const end = fieldMembers.find(mem => mem.name === 'end')
 
   const renderField: RenderFieldCallback = useCallback(
-    (props) => props.children,
+    props => props.children,
     []
   )
 
