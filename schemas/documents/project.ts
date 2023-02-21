@@ -1,6 +1,7 @@
 import { PresentationIcon } from '@sanity/icons'
-import { BAMA } from 'types/constants'
 import { defineArrayMember, defineField, defineType } from 'sanity'
+
+import { BAMA } from 'types/constants'
 
 export default defineType({
   name: 'project',
@@ -18,7 +19,7 @@ export default defineType({
       type: 'seo',
       title: 'SEO',
       group: 'seo',
-      validation: (rule) => rule.required(),
+      validation: rule => rule.required(),
     }),
     defineField({
       name: 'title',
@@ -26,7 +27,7 @@ export default defineType({
       title: 'Title',
       type: 'string',
       group: 'body',
-      validation: (rule) => rule.required(),
+      validation: rule => rule.required(),
     }),
     defineField({
       name: 'slug',
@@ -38,13 +39,13 @@ export default defineType({
         maxLength: 96,
         isUnique: (value, context) => context.defaultIsUnique(value, context),
       },
-      validation: (rule) => rule.required(),
+      validation: rule => rule.required(),
     }),
     defineField({
       name: 'overview',
       type: 'overview',
       group: 'body',
-      validation: (rule) => rule.required(),
+      validation: rule => rule.required(),
     }),
     defineField({
       name: 'logo',
@@ -58,7 +59,7 @@ export default defineType({
         'This image will be used as the cover image for the project. If you choose to add it to the show case projects, this is the image displayed in the list within the homepage.',
       type: 'imageAlt',
       group: 'body',
-      validation: (rule) => rule.required(),
+      validation: rule => rule.required(),
     }),
     defineField({
       title: 'Link to Project',
@@ -92,11 +93,11 @@ export default defineType({
       initialValue: 'bachelor',
       group: 'body',
       options: {
-        list: BAMA.map((item) => item.value),
+        list: BAMA.map(item => item.value),
         layout: 'radio',
         direction: 'horizontal',
       },
-      validation: (rule) => rule.required(),
+      validation: rule => rule.required(),
     }),
     defineField({
       title: 'Deparments',
@@ -104,7 +105,7 @@ export default defineType({
       type: 'array',
       group: 'body',
       of: [{ type: 'reference', to: [{ type: 'department' }] }],
-      validation: (rule) => rule.required(),
+      validation: rule => rule.required(),
     }),
     defineField({
       name: 'description',

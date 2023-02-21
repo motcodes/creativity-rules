@@ -1,10 +1,17 @@
-import { SiteMeta } from 'components/global/SiteMeta'
-import { ProjectPage } from 'components/pages/project/ProjectPage'
-import { getPageSeo, getPathsByType, getProjectBySlug } from 'lib/sanity.client'
 import { GetStaticPaths, GetStaticProps } from 'next'
 import Head from 'next/head'
 
-export default function ProjectSlugRoute({ data, head }) {
+import { SiteMeta, SiteMetaProps } from 'components/global/SiteMeta'
+import { ProjectPage } from 'components/pages/project/ProjectPage'
+import { getPageSeo, getPathsByType, getProjectBySlug } from 'lib/sanity.client'
+import { ProjectPayload } from 'types'
+
+export interface ProjectPageProps {
+  data: ProjectPayload
+  head: SiteMetaProps
+}
+
+export default function ProjectSlugRoute({ data, head }: ProjectPageProps) {
   return (
     <>
       <Head>
@@ -21,7 +28,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
   const data = await getPathsByType('project')
 
   return {
-    paths: data.map((item) => ({ params: { slug: item.slug } })),
+    paths: data.map(item => ({ params: { slug: item.slug } })),
     fallback: 'blocking',
   }
 }

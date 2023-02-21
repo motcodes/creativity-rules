@@ -18,7 +18,7 @@ export default defineType({
       title: 'SEO',
       type: 'seo',
       group: 'seo',
-      validation: (rule) => rule.required(),
+      validation: rule => rule.required(),
     }),
 
     // Stage
@@ -38,7 +38,7 @@ export default defineType({
         maxLength: 96,
         isUnique: (value, context) => context.defaultIsUnique(value, context),
       },
-      validation: (rule) => rule.required(),
+      validation: rule => rule.required(),
     }),
     defineField({
       name: 'stream',
@@ -57,8 +57,8 @@ export default defineType({
           to: [{ type: 'speaker' }],
         },
       ],
-      validation: (Rule) =>
-        Rule.unique().warning(`This talk is already in this schedule`),
+      validation: Rule =>
+        Rule.unique().warning('This talk is already in this schedule'),
     }),
   ],
   preview: {

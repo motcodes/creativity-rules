@@ -1,5 +1,3 @@
-'use client'
-
 export function Stage({ stream }) {
   return (
     <div className="aspect-video w-full h-full">

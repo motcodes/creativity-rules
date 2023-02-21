@@ -1,8 +1,8 @@
-'use client'
-import { urlForImage } from 'lib/sanity.image'
 import type { ImageProps } from 'next/image'
 import Image, { ImageLoaderProps } from 'next/image'
 import { useRef, useState } from 'react'
+
+import { urlForImage } from 'lib/sanity.image'
 
 const emptyImage =
   'data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=='

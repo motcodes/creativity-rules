@@ -16,14 +16,14 @@ export default defineType({
       type: 'seo',
       title: 'SEO',
       group: 'seo',
-      validation: (rule) => rule.required(),
+      validation: rule => rule.required(),
     }),
     defineField({
       type: 'string',
       name: 'title',
       title: 'Title',
       group: 'body',
-      validation: (rule) => rule.required(),
+      validation: rule => rule.required(),
     }),
     defineField({
       type: 'slug',
@@ -33,7 +33,7 @@ export default defineType({
       options: {
         source: 'title',
       },
-      validation: (rule) => rule.required(),
+      validation: rule => rule.required(),
     }),
     defineField({
       name: 'overview',
@@ -45,7 +45,8 @@ export default defineType({
       name: 'body',
       title: 'Body',
       group: 'body',
-      description: `This is where you can write the page's content. Including custom blocks like timelines for more a more visual display of information.`,
+      description:
+        "This is where you can write the page's content. Including custom blocks like timelines for more a more visual display of information.",
     }),
   ],
   preview: {

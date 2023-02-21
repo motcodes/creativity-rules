@@ -11,22 +11,22 @@ import {
 } from 'lib/sanity.client'
 import { TalkSpeakerPayload } from 'types'
 
-export interface TalkPageProps {
+export interface SpeakerPageProps {
   data: TalkSpeakerPayload
   head: SiteMetaProps
 }
 
-export default function TalkSlugRoute({ data, head }: TalkPageProps) {
+export default function SpeakerSlugRoute({ data, head }: SpeakerPageProps) {
   return (
     <>
       <Head>
         <SiteMeta {...head} />
       </Head>
       <div className="flex min-h-screen flex-col bg-white text-black">
-        <h1 className="text-3xl">Talk</h1>
+        <h1 className="text-3xl">Speaker</h1>
         <Header
-          title={data.title}
-          description={data.talkDescription}
+          title={data.name}
+          description={data.aboutPerson}
           logo={data.speakerImage}
         />
       </div>
@@ -38,7 +38,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
   const data = await getPathsByType('speaker')
 
   return {
-    paths: data.map(item => ({ params: { slug: item.slug } })),
+    paths: data.map(item => ({ params: { slug: item.speakerSlug } })),
     fallback: 'blocking',
   }
 }

@@ -1,9 +1,16 @@
-import { SiteMeta } from 'components/global/SiteMeta'
-import { StagePage } from 'components/pages/stage/StagePage'
-import { getPageSeo, getStagePage } from 'lib/sanity.client'
 import Head from 'next/head'
 
-export default function StageRoute({ data, head }) {
+import { SiteMeta, SiteMetaProps } from 'components/global/SiteMeta'
+import { StagePage } from 'components/pages/stage/StagePage'
+import { getPageSeo, getSettings, getStagePage } from 'lib/sanity.client'
+import { StagePayload } from 'types'
+
+export interface StagePageProps {
+  data: StagePayload
+  head: SiteMetaProps
+}
+
+export default function StageRoute({ data, head }: StagePageProps) {
   return (
     <>
       <Head>
@@ -17,15 +24,19 @@ export default function StageRoute({ data, head }) {
 }
 
 export const getStaticProps = async () => {
-  const data = await getStagePage()
-  const head = await getPageSeo({
-    page: 'stage',
-  })
+  const [data, head, settings] = await Promise.all([
+    getStagePage(),
+    getPageSeo({
+      page: 'stage',
+    }),
+    getSettings(),
+  ])
 
   return {
     props: {
       data,
       head,
+      settings,
     },
     revalidate: 15,
   }

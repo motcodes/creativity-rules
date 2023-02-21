@@ -72,12 +72,12 @@ export default defineField({
           name: 'text',
           type: 'text',
           description: "Opening and closing quotes '\"\"' aren't necessary.",
-          validation: (Rule) => Rule.required(),
+          validation: Rule => Rule.required(),
         },
         {
           name: 'author',
           type: 'string',
-          validation: (Rule) => Rule.required(),
+          validation: Rule => Rule.required(),
         },
       ],
       preview: {

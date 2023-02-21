@@ -1,42 +1,10 @@
+import Link from 'next/link'
+import { Fragment } from 'react'
+
 import { CustomPortableText } from 'components/shared/CustomPortableText'
 import { Header } from 'components/shared/Header'
 import ImageBox from 'components/shared/ImageBox'
-import ScrollUp from 'components/shared/ScrollUp'
-import Link from 'next/link'
-import { Fragment } from 'react'
-import { Image, PortableTextBlock } from 'sanity'
-import { SEOProps } from 'types'
-
-export interface ProjectPayload {
-  seo: SEOProps
-  title?: string
-  overview?: PortableTextBlock[]
-  coverImage?: Image
-  logo?: Image
-  slug: string
-  description?: PortableTextBlock[]
-  site?: string
-  socialLinks?: Array<{
-    _key: string
-    label: string
-    url: string
-  }>
-  team: Array<{
-    _key: string
-    name: string
-    credits?: Array<string>
-    link?: {
-      label: string
-      url: string
-    }
-  }>
-  departments: Array<{
-    _id: string
-    courseOfStudies: { title: string; value: string }
-    title: string
-    value: string
-  }>
-}
+import { ProjectPayload } from 'types'
 
 export function ProjectPage({
   coverImage,
@@ -54,10 +22,10 @@ export function ProjectPage({
       (value, index, self) =>
         index ===
         self.findIndex(
-          (t) => t.courseOfStudies.value === value.courseOfStudies.value
+          t => t.courseOfStudies.value === value.courseOfStudies.value
         )
     )
-    .map((item) => item.courseOfStudies)
+    .map(item => item.courseOfStudies)
 
   return (
     <div>
@@ -67,73 +35,79 @@ export function ProjectPage({
         <div className="py-5">
           <h2 className="text-lg font-bold mb-1">
             A Project by students from{' '}
-            {courseOfStudies.map((item, index) => (
-              <Fragment key={item.value}>
-                <span>{item.title}</span>
-                {index !== courseOfStudies.length - 1 && <span>, </span>}
-              </Fragment>
-            ))}
+            {!!courseOfStudies?.length &&
+              courseOfStudies.map((item, index) => (
+                <Fragment key={item.value}>
+                  <span>{item.title}</span>
+                  {index !== courseOfStudies.length - 1 && <span>, </span>}
+                </Fragment>
+              ))}
           </h2>
           <ul className="list-none flex flex-row gap-2 m-0">
             <li>Departments:</li>
-            {departments.map((item, index) => (
-              <li key={item._id}>
-                <span>{item.title}</span>
-                {index !== departments.length - 1 && <span>, </span>}
-              </li>
-            ))}
+            {!!departments?.length &&
+              departments.map((item, index) => (
+                <li key={item._id}>
+                  <span>{item.title}</span>
+                  {index !== departments.length - 1 && <span>, </span>}
+                </li>
+              ))}
           </ul>
         </div>
 
         <div className="py-5">
           <h2 className="text-lg font-bold mb-5">Social Links</h2>
           <ul className="list-none flex flex-col gap-2 m-0">
-            {socialLinks.map((item) => (
-              <li key={item._key}>
-                <Link
-                  target="_blank"
-                  href={item.url}
-                  className="text-md md:text-lg underline transition hover:opacity-50"
-                >
-                  {item.label}
-                </Link>
-              </li>
-            ))}
+            {!!socialLinks?.length &&
+              socialLinks.map(item => (
+                <li key={item._key}>
+                  <Link
+                    target="_blank"
+                    href={item.url}
+                    className="text-md md:text-lg underline transition hover:opacity-50"
+                  >
+                    {item.label}
+                  </Link>
+                </li>
+              ))}
           </ul>
         </div>
 
         <div className="py-5">
           <h2 className="text-lg font-bold mb-5">Team</h2>
           <ul className="list-none flex flex-col gap-2 m-0">
-            {team.map((item) => (
-              <li key={item._key}>
-                <h3 className="text-md md:text-lg font-semibold">
-                  {item.name}
-                </h3>
-                {item.link?.url && (
-                  <Link
-                    target="_blank"
-                    href={item.link.url}
-                    className="text-md md:text-lg underline transition hover:opacity-50"
-                  >
-                    {item.link.label}
-                  </Link>
-                )}
-                {!!item.credits.length && (
-                  <>
-                    <h4>Credits:</h4>
-                    <ul className="flex flex-row gap-2">
-                      {item.credits.map((subitem, index) => (
-                        <li key={subitem}>
-                          {subitem}
-                          {index !== item.credits.length - 1 && <span>, </span>}
-                        </li>
-                      ))}
-                    </ul>
-                  </>
-                )}
-              </li>
-            ))}
+            {!!team?.length &&
+              team.map(item => (
+                <li key={item._key}>
+                  <h3 className="text-md md:text-lg font-semibold">
+                    {item.name}
+                  </h3>
+                  {item.link?.url && (
+                    <Link
+                      target="_blank"
+                      href={item.link.url}
+                      className="text-md md:text-lg underline transition hover:opacity-50"
+                    >
+                      {item.link.label}
+                    </Link>
+                  )}
+                  {!!item.credits.length && (
+                    <>
+                      <h4>Credits:</h4>
+                      <ul className="flex flex-row gap-2">
+                        {item.credits.map((subitem, index) => (
+                          <li key={subitem}>
+                            {subitem}
+                            {index !== item.credits.length - 1 && (
+                              <span>, </span>
+                            )}
+                          </li>
+                        ))}
+                      </ul>
+                    </>
+                  )}
+                </li>
+              ))}
           </ul>
         </div>
 
@@ -169,8 +143,6 @@ export function ProjectPage({
             value={description}
           />
         )}
-        {/* Workaround: scroll to top on route change */}
-        <ScrollUp />
       </div>
       <div className="absolute left-0 w-screen border-t" />
     </div>

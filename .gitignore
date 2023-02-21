@@ -43,3 +43,4 @@ studio/.env.development
 .gitconfig
 .DS_Store
 Rakefile
+.turbo

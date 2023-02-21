@@ -1,8 +1,9 @@
 import { PortableText, PortableTextComponents } from '@portabletext/react'
-import ImageBox from 'components/shared/ImageBox'
-import { TimelineSection } from 'components/shared/TimelineSection'
 import Link from 'next/link'
 import { Image, PortableTextBlock } from 'sanity'
+
+import ImageBox from 'components/shared/ImageBox'
+import { TimelineSection } from 'components/shared/TimelineSection'
 
 export function CustomPortableText({
   paragraphClasses,
@@ -17,10 +18,10 @@ export function CustomPortableText({
         return <p className={paragraphClasses}>{children}</p>
       },
       h2: ({ children }) => {
-        return <h2 className={`text-3xl font-semibold`}>{children}</h2>
+        return <h2 className={'text-3xl font-semibold'}>{children}</h2>
       },
       h3: ({ children }) => {
-        return <h3 className={`text-2xl font-semibold`}>{children}</h3>
+        return <h3 className={'text-2xl font-semibold'}>{children}</h3>
       },
     },
     marks: {

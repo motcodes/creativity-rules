@@ -1,4 +1,5 @@
-import { ProjectPayload } from 'components/pages/project/ProjectPage'
+import { createClient } from 'next-sanity'
+
 import { apiVersion, dataset, projectId, useCdn } from 'lib/sanity.api'
 import {
   aboutPageQuery,
@@ -11,20 +12,20 @@ import {
   settingsQuery,
   stagePageQuery,
   talkBySlugQuery,
+  venuePageQuery,
 } from 'lib/sanity.queries'
-import { createClient } from 'next-sanity'
 import type {
-  AboutPagePayload,
-  HomePagePayload,
+  AboutPayload,
+  HomePayload,
   PagePayload,
+  ProjectPayload,
   SettingsPayload,
+  StagePayload,
+  TalkSpeakerPayload,
+  VenuePayload,
 } from 'types'
-
 import { urlForSeoImage } from './sanity.image'
 
-/**
- * Checks if it's safe to create a client instance, as `@sanity/client` will throw an error if `projectId` is false
- */
 const sanityClient = () => {
   return projectId
     ? createClient({ projectId, dataset, apiVersion, useCdn })
@@ -66,16 +67,20 @@ export async function getPageSeo({
   }
 }
 
-export async function getHomePage(): Promise<HomePagePayload> {
+export async function getHomePage(): Promise<HomePayload> {
   return await sanityClient()?.fetch(homePageQuery)
 }
 
-export async function getAboutPage(): Promise<AboutPagePayload> {
+export async function getAboutPage(): Promise<AboutPayload> {
   return await sanityClient()?.fetch(aboutPageQuery)
 }
 
-export async function getStagePage(): Promise<AboutPagePayload> {
+export async function getStagePage(): Promise<StagePayload> {
   return await sanityClient()?.fetch(stagePageQuery)
+}
+
+export async function getVenuePage(): Promise<VenuePayload> {
+  return await sanityClient()?.fetch(venuePageQuery)
 }
 
 export async function getPageBySlug({ slug }: SlugProps): Promise<PagePayload> {
@@ -89,13 +94,13 @@ export async function getProjectBySlug({
 }
 export async function getTalkBySlug({
   slug,
-}: SlugProps): Promise<ProjectPayload> {
+}: SlugProps): Promise<TalkSpeakerPayload> {
   return await sanityClient()?.fetch(talkBySlugQuery, { slug })
 }
 
 export async function getPathsByType(
   type: string
-): Promise<Array<{ slug: string }>> {
+): Promise<Array<{ slug: string; speakerSlug?: string }>> {
   return await sanityClient()?.fetch(pathsByType(type))
 }
 

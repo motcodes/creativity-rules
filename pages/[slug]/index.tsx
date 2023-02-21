@@ -1,10 +1,22 @@
-import { SiteMeta } from 'components/global/SiteMeta'
-import { Page } from 'components/pages/page/Page'
-import { getPageBySlug, getPageSeo, getPathsByType } from 'lib/sanity.client'
 import { GetStaticPaths, GetStaticProps } from 'next'
 import Head from 'next/head'
 
-export default function SlugRoute({ data, head }) {
+import { SiteMeta, SiteMetaProps } from 'components/global/SiteMeta'
+import { Page } from 'components/pages/page/Page'
+import {
+  getPageBySlug,
+  getPageSeo,
+  getPathsByType,
+  getSettings,
+} from 'lib/sanity.client'
+import { PagePayload } from 'types'
+
+export interface SlugPageProps {
+  data: PagePayload
+  head: SiteMetaProps
+}
+
+export default function SlugRoute({ data, head }: SlugPageProps) {
   return (
     <>
       <Head>
@@ -21,22 +33,28 @@ export const getStaticPaths: GetStaticPaths = async () => {
   const data = await getPathsByType('page')
 
   return {
-    paths: data.map((item) => ({ params: { slug: item.slug } })),
+    paths: data.map(item => ({ params: { slug: item.slug } })),
     fallback: 'blocking',
   }
 }
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
-  const data = await getPageBySlug({ slug: params?.slug as string })
-  const head = await getPageSeo({
-    page: 'page',
-    slug: params.slug as string,
-  })
+  const [data, head, settings] = await Promise.all([
+    getPageBySlug({
+      slug: params?.slug as string,
+    }),
+    getPageSeo({
+      page: 'page',
+      slug: params.slug as string,
+    }),
+    getSettings(),
+  ])
 
   return {
     props: {
       data,
       head,
+      settings,
     },
     revalidate: 15,
   }
