@@ -20,7 +20,7 @@ module.exports = {
   plugins: ['react', 'import', '@typescript-eslint'],
   rules: {
     'prefer-const': 'error',
-    indent: ['error', 2],
+    indent: ['off', 2],
     'linebreak-style': ['error', 'unix'],
     quotes: ['error', 'single'],
     semi: ['error', 'never'],
@@ -37,6 +37,7 @@ module.exports = {
         'newlines-between': 'always',
       },
     ],
+    'import/no-anonymous-default-export': 'off',
     'import/no-named-as-default-member': 'off',
     'import/no-unresolved': [2, { ignore: ['^(all|part):'] }],
     'react/react-in-jsx-scope': 'off',

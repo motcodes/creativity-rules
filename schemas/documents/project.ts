@@ -8,7 +8,6 @@ export default defineType({
   title: 'Project',
   type: 'document',
   icon: PresentationIcon,
-  liveEdit: true,
   groups: [
     { name: 'body', title: 'Body', default: true },
     { name: 'seo', title: 'SEO' },
@@ -57,7 +56,7 @@ export default defineType({
       title: 'Cover Image',
       description:
         'This image will be used as the cover image for the project. If you choose to add it to the show case projects, this is the image displayed in the list within the homepage.',
-      type: 'imageAlt',
+      type: 'images',
       group: 'body',
       validation: rule => rule.required(),
     }),

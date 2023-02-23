@@ -27,6 +27,16 @@ export default defineType({
           of: [{ type: 'string' }],
         }),
       ],
+      preview: {
+        select: {
+          title: 'name',
+          subtitle: 'credits',
+        },
+        prepare: ({ title, subtitle }) => ({
+          title,
+          subtitle: subtitle && subtitle[0] ? subtitle[0] : '',
+        }),
+      },
     }),
   ],
 })

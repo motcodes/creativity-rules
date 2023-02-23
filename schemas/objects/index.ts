@@ -9,10 +9,12 @@ import team from './team'
 import imageAlt from './imageAlt'
 import video from './video'
 import seo from './seo'
+import images from './images'
 
 export default [
   ...link,
   imageAlt,
+  images,
   blockContent,
   duration,
   milestone,

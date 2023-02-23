@@ -17,15 +17,17 @@ export function ProjectPage({
   departments,
   logo,
 }: ProjectPayload) {
-  const courseOfStudies = departments
-    .filter(
-      (value, index, self) =>
-        index ===
-        self.findIndex(
-          t => t.courseOfStudies.value === value.courseOfStudies.value
+  const courseOfStudies = !!departments?.length
+    ? departments
+        .filter(
+          (value, index, self) =>
+            index ===
+            self.findIndex(
+              t => t.courseOfStudies.value === value.courseOfStudies.value
+            )
         )
-    )
-    .map(item => item.courseOfStudies)
+        .map(item => item.courseOfStudies)
+    : []
 
   return (
     <div>
@@ -91,7 +93,7 @@ export function ProjectPage({
                       {item.link.label}
                     </Link>
                   )}
-                  {!!item.credits.length && (
+                  {!!item.credits?.length && (
                     <>
                       <h4>Credits:</h4>
                       <ul className="flex flex-row gap-2">
@@ -112,11 +114,13 @@ export function ProjectPage({
         </div>
 
         <div className="rounded-md border">
-          <ImageBox
-            image={coverImage}
-            alt={`Cover image for ${title}`}
-            imageClassName="relative aspect-[16/9]"
-          />
+          {coverImage && (
+            <ImageBox
+              image={coverImage}
+              alt={`Cover image for ${title}`}
+              imageClassName="relative aspect-[16/9]"
+            />
+          )}
 
           <div className="divide-inherit grid grid-cols-1 divide-y lg:divide-y-0 lg:divide-x">
             {site && (
@@ -136,7 +140,6 @@ export function ProjectPage({
           </div>
         </div>
 
-        {/* Description */}
         {description && (
           <CustomPortableText
             paragraphClasses="max-w-3xl text-xl text-gray-600"
